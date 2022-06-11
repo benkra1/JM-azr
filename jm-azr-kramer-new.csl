@@ -237,7 +237,8 @@
 						</if>
 					</choose>
 				</else-if>
-				<!--ÖSTERREICHISCHE GESETZE--> <!--EU VERORDNUNGEN/RICHTLINIEN-->
+				<!--ÖSTERREICHISCHE GESETZE-->
+				<!--EU VERORDNUNGEN/RICHTLINIEN-->
 				<else-if type="bill legislation statute" match="any">
 					<choose>
 						<if variable="gazette-flag" match="all">
@@ -246,43 +247,41 @@
 							<choose>
 								<if position="first">
 									<choose>
-									<if variable="locator">
-									<text variable="locator" prefix=" " suffix=" "/>
-									</if>
+										<if variable="locator">
+											<text variable="locator" prefix=" " suffix=" "/>
+										</if>
 									</choose>
-									
 									<text variable="title" suffix=", "/>
 									<text variable="references"/>
 								</if>
 								<else>
 									<choose>
-									<if variable="locator">
-									<text variable="locator" suffix=" "/>
-									</if>
+										<if variable="locator">
+											<text variable="locator" suffix=" "/>
+										</if>
 									</choose>
 									<text variable="title" form="short"/>
 									<text variable="references" prefix=" "/>
 								</else>
-								</choose>
+							</choose>
 						</if>
 						<else>
 							<!-- Österreichische Normen -->
 							<choose>
 								<if position="first">
 									<choose>
-									<if variable="locator">
-									<text variable="locator" prefix=" " suffix=" "/>
-									</if>
+										<if variable="locator">
+											<text variable="locator" prefix=" " suffix=" "/>
+										</if>
 									</choose>
-									
 									<text variable="title"/>
 									<text variable="references" prefix=" idF "/>
 								</if>
 								<else>
 									<choose>
-									<if variable="locator">
-									<text variable="locator" suffix=" "/>
-									</if>
+										<if variable="locator">
+											<text variable="locator" suffix=" "/>
+										</if>
 									</choose>
 									<text variable="title" form="short"/>
 								</else>
@@ -290,8 +289,78 @@
 						</else>
 					</choose>
 				</else-if>
-				
 				<!--ENTSCHEIDUNGEN-->
+				<else-if type="legal_case">
+					<choose>
+						<if jurisdiction="at">
+							<names variable="authority" suffix=" "/>
+							<choose>
+								<if variable="publisher">
+									<text variable="title"/>
+									<choose>
+										<if variable="document-name">
+											<text variable="document-name" prefix=", " suffix="," font-style="italic"/>
+										</if>
+									</choose>
+									<text variable="publisher" prefix=" "/>
+								</if>
+								<else>
+									<date variable="issued" suffix=", ">
+										<date-part name="day" suffix=". "/>
+										<date-part name="month" form="numeric" suffix=". "/>
+										<date-part name="year"/>
+									</date>
+									<text variable="title"/>
+								</else>
+							</choose>
+						</if>
+						<else-if jurisdiction="eu.int">
+							<names variable="authority" suffix=" "/>
+							<date variable="issued" suffix=", ">
+								<date-part name="day" suffix=". "/>
+								<date-part name="month" form="numeric" suffix=". "/>
+								<date-part name="year"/>
+							</date>
+							<text variable="title"/>
+							<choose>
+								<if variable="document-name">
+									<text variable="document-name" prefix=", " font-style="italic"/>
+								</if>
+							</choose>
+							<text variable="issue" prefix=", "/>
+							<choose>
+								<if variable="locator">
+									<text variable="locator" prefix=", "/>
+								</if>
+							</choose>
+						</else-if>
+						<else-if jurisdiction="coe.int">
+							<names variable="authority" suffix=" "/>
+							<date variable="issued" suffix=" ">
+								<date-part name="day" form="numeric" suffix=". "/>
+								<date-part name="month" form="numeric" suffix=". "/>
+								<date-part name="year"/>
+							</date>
+							<choose>
+								<if variable="division">
+									<text variable="division" prefix="(" suffix=")"/>
+								</if>
+							</choose>
+							<text variable="title" prefix=", "/>
+							<choose>
+								<if variable="document-name">
+									<text variable="document-name" prefix=", " font-style="italic"/>
+								</if>
+							</choose>
+							<text variable="issue" prefix=", "/>
+							<choose>
+								<if variable="locator">
+									<text variable="locator" prefix=", "/>
+								</if>
+							</choose>	
+						</else-if>
+					</choose>
+				</else-if>
 			</choose>
 		</layout>
 	</citation>
