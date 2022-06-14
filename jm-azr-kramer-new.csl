@@ -241,9 +241,9 @@
 				<!--EU VERORDNUNGEN/RICHTLINIEN-->
 				<else-if type="bill legislation statute" match="any">
 					<choose>
-						<if variable="gazette-flag" match="all">
+						<if jurisdiction="eu.int">
 							<!-- Verordnung oder Richtlinie der Europäischen Union -->
-							<!-- Das genre Feld wird verwendet um europäische Normen zu markieren-->
+							<!-- Das Jurisdiction Feld wird verwendet um europäische Normen zu markieren-->
 							<choose>
 								<if position="first">
 									<choose>
