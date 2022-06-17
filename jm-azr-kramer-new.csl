@@ -66,7 +66,7 @@
 	</macro>
 	<macro name="title">
 		<choose>
-			<if position="first bibliography" match="all">
+			<if position="first bibliography" match="any">
 				<text variable="title"/>
 			</if>
 			<else>
@@ -268,22 +268,25 @@
 						<else>
 							<!-- Österreichische Normen -->
 							<choose>
-								<if position="first">
-									<choose>
-										<if variable="locator">
-											<text variable="locator" prefix=" " suffix=" "/>
-										</if>
-									</choose>
-									<text variable="title"/>
-									<text variable="references" prefix=" idF "/>
-								</if>
-								<else>
+								<if variable="page locator" match="any">
 									<choose>
 										<if variable="locator">
 											<text variable="locator" suffix=" "/>
 										</if>
+										<else>
+										<text variable="page" suffix=" "/>
+										</else>
 									</choose>
-									<text variable="title" form="short"/>
+									<text macro="title"/>
+									<choose><if position="first">
+									<text variable="references" prefix=" idF "/>
+									</if></choose>
+								</if>
+								<else>
+									<text macro="title"/>
+									<choose><if position="first">
+									<text variable="references" prefix=" "/>
+									</if></choose>
 								</else>
 							</choose>
 						</else>
@@ -915,7 +918,7 @@
 										</if>
 									</choose>
 									<text variable="title"/>
-									<text variable="references" prefix=" idF "/>
+									<text variable="references" prefix=" "/>
 								
 						</else>
 					</choose>
