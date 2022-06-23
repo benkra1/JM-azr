@@ -103,6 +103,7 @@ German | English | Required? | Example
 Titel | Name of Act | :white_check_mark:|RL (EG) 2003/88 des Europäischen Parlaments und des Rates vom 4. 11. 2003 über bestimmte Aspekte der Arbeitszeitgestaltung (Arbeitszeit-Richtlinie)
 Kurztitel|Short Title||AZ-RL 2003/88
 Geschichte|History|:white_check_mark:|ABl L 2003/299, 9
+Jurisdiktion|Jurisdiction|:white_check_mark:|European Union-EU.INT
 #### Results
 ![image](https://user-images.githubusercontent.com/93471400/175364893-d3473828-a5f2-4287-9c1d-1ec5fe3f5737.png)
 
