@@ -66,7 +66,11 @@
 	</macro>
 	<macro name="title">
 		<choose>
-			<if position="first bibliography" match="any">
+			<if>
+				<conditions match="any">
+					<condition position="first"/>
+					<condition context="bibliography"/>
+				</conditions>
 				<text variable="title"/>
 			</if>
 			<else>
@@ -103,271 +107,424 @@
 			<date-part name="year" form="long" prefix=" (" suffix=")"/>
 		</date>
 	</macro>
+	<!--Zitierte Werke-->
+	<macro name="article-journal">
+		<text macro="authors" suffix=", "/>
+		<choose>
+			<if>
+				<conditions match="any">
+					<condition position="first"/>
+					<condition context="bibliography"/>
+				</conditions>
+				<text macro="title" suffix=", "/>
+			</if>
+		</choose>
+		<choose>
+			<if variable="container-title-short">
+				<text variable="container-title-short" suffix=" "/>
+			</if>
+			<else>
+				<text variable="container-title" suffix=" "/>
+			</else>
+		</choose>
+		<choose>
+			<if variable="volume">
+				<text variable="volume"/>
+			</if>
+			<else>
+				<text variable="issue"/>
+			</else>
+		</choose>
+		<choose>
+			<!-- Wenn keine Seite angegeben ist, wird die Nummer des Beitrags verwendet. -->
+			<if variable="page-first">
+				<choose>
+					<if variable="locator">
+						<text variable="page-first" prefix=", "/>
+						<text variable="locator" prefix=" (" suffix=")"/>
+					</if>
+					<else>
+						<text variable="page-first" prefix=", "/>
+					</else>
+				</choose>
+			</if>
+			<else-if variable="issue">
+				<text variable="issue" prefix="/"/>
+			</else-if>
+		</choose>
+	</macro>
+	<macro name="legal_commentary">
+		<text macro="authors"/>
+		<choose>
+			<if variable="editor">
+				<text macro="editors" prefix=" in "/>
+			</if>
+		</choose>
+		<choose>
+			<text macro="title" prefix=", "/>
+		</choose>
+		<choose>
+			<if variable="edition">
+				<text macro="edition"/>
+			</if>
+		</choose>
+		<choose>
+			<if variable="issued"><choose>
+			<if>
+				<conditions match="any">
+					<condition position="first"/>
+					<condition context="bibliography"/></conditions>
+				<text macro="issued"/>
+			</if></choose></if>
+		</choose>
+		<choose>
+			<if variable="page-first">
+				<text variable="page-first" prefix=" "/>
+			</if>
+		</choose>
+		<choose>
+			<if variable="locator">
+				<text variable="locator" prefix=" "/>
+			</if>
+		</choose>
+	</macro>
+	<macro name="chapter">
+		<text macro="authors"/>
+		<choose>
+			<if>
+				<conditions match="any">
+					<condition position="first"/>
+					<condition context="bibliography"/>
+				</conditions>
+				<text macro="title" prefix=", " suffix=","/>
+			</if>
+		</choose>
+		<choose>
+			<if variable="editor">
+				<text macro="editors" suffix=" (Hrsg), " prefix=" in "/>
+			</if>
+		</choose>
+		<choose>
+			<if variable="editor">
+				<choose>
+					<if variable="container-title-short">
+						<text variable="container-title-short" suffix=" "/>
+					</if>
+					<else>
+						<text variable="container-title" suffix=" "/>
+					</else>
+				</choose>
+			</if>
+			<else>
+				<choose>
+					<if variable="container-title-short">
+						<text variable="container-title-short" prefix="in " suffix=" "/>
+					</if>
+					<else>
+						<text variable="container-title" prefix=" in " suffix=" "/>
+					</else>
+				</choose>
+			</else>
+		</choose>
+		<choose>
+			<if variable="issued"><choose>
+			<if>
+				<conditions match="any">
+					<condition position="first"/>
+					<condition context="bibliography"/></conditions>
+				<date variable="issued" suffix=" ">
+					<date-part name="year" form="long" prefix=" (" suffix=")"/>
+				</date>
+			</if></choose></if>
+		</choose>
+		<choose>
+			<if variable="page-first">
+				<choose>
+					<if variable="locator">
+						<text variable="page-first"/>
+						<text variable="locator" prefix=" (" suffix=")"/>
+					</if>
+					<else>
+						<text variable="page-first"/>
+					</else>
+				</choose>
+			</if>
+		</choose>
+	</macro>
+	<macro name="law">
+		<choose>
+			<if jurisdiction="eu.int">
+				<!-- Verordnung oder Richtlinie der Europäischen Union -->
+				<!-- Das Jurisdiction Feld wird verwendet um europäische Normen zu markieren-->
+				<choose>
+					<if>
+				<conditions match="any">
+					<condition position="first"/>
+					<condition context="bibliography"/>
+				</conditions>
+						<choose>
+							<if variable="locator">
+								<text variable="locator" prefix=" " suffix=" "/>
+							</if>
+						</choose>
+						<text variable="title" suffix=", "/>
+						<text variable="references"/>
+					</if>
+					<else>
+						<choose>
+							<if variable="locator">
+								<text variable="locator" suffix=" "/>
+							</if>
+						</choose>
+						<text variable="title" form="short"/>
+						<text variable="references" prefix=" "/>
+					</else>
+				</choose>
+			</if>
+			<else>
+				<!-- Österreichische Normen -->
+				<choose>
+					<if variable="page locator" match="any">
+						<choose>
+							<if variable="locator">
+								<text variable="locator" suffix=" "/>
+							</if>
+							<else>
+								<text variable="page" suffix=" "/>
+							</else>
+						</choose>
+						<text macro="title"/>
+						<choose>
+							<if>
+				<conditions match="any">
+					<condition position="first"/>
+					<condition context="bibliography"/>
+				</conditions>
+								<text variable="references" prefix=" idF "/>
+							</if>
+						</choose>
+					</if>
+					<else>
+						<text macro="title"/>
+						<choose>
+							<if>
+				<conditions match="any">
+					<condition position="first"/>
+					<condition context="bibliography"/>
+				</conditions>
+								<text variable="references" prefix=" "/>
+							</if>
+						</choose>
+					</else>
+				</choose>
+			</else>
+		</choose>
+	</macro>
+	<macro name="cases">
+		<choose>
+			<if jurisdiction="at">
+				<names variable="authority" suffix=" "/>
+				<choose>
+					<if variable="publisher">
+						<text variable="title"/>
+						<choose>
+							<if variable="document-name">
+								<text variable="document-name" prefix=", " suffix="," font-style="italic"/>
+							</if>
+						</choose>
+						<text variable="publisher" prefix=" "/>
+					</if>
+					<else>
+						<date variable="issued" suffix=", ">
+							<date-part name="day" suffix=". "/>
+							<date-part name="month" form="numeric" suffix=". "/>
+							<date-part name="year"/>
+						</date>
+						<text variable="title"/>
+					</else>
+				</choose>
+			</if>
+			<else-if jurisdiction="eu.int">
+				<names variable="authority" suffix=" "/>
+				<date variable="issued" suffix=", ">
+					<date-part name="day" suffix=". "/>
+					<date-part name="month" form="numeric" suffix=". "/>
+					<date-part name="year"/>
+				</date>
+				<text variable="title"/>
+				<choose>
+					<if variable="document-name">
+						<text variable="document-name" prefix=", " font-style="italic"/>
+					</if>
+				</choose>
+				<text variable="issue" prefix=", "/>
+				<choose>
+					<if variable="locator">
+						<text variable="locator" prefix=", "/>
+					</if>
+				</choose>
+			</else-if>
+			<else-if jurisdiction="coe.int">
+				<names variable="authority" suffix=" "/>
+				<date variable="issued" suffix=" ">
+					<date-part name="day" form="numeric" suffix=". "/>
+					<date-part name="month" form="numeric" suffix=". "/>
+					<date-part name="year"/>
+				</date>
+				<choose>
+					<if variable="division">
+						<text variable="division" prefix="(" suffix=")"/>
+					</if>
+				</choose>
+				<text variable="title" prefix=", "/>
+				<choose>
+					<if variable="document-name">
+						<text variable="document-name" prefix=", " font-style="italic"/>
+					</if>
+				</choose>
+				<text variable="issue" prefix=", "/>
+				<choose>
+					<if variable="locator">
+						<text variable="locator" prefix=", "/>
+					</if>
+				</choose>
+			</else-if>
+		</choose>
+	</macro>
+		<!-- sort macros -->
+	<macro name="type-sort">
+		<choose>
+			<if type="legal_case regulation" match="any">
+				<text value="1"/>
+			</if>
+			<else-if type="legislation bill" match="any">
+				<text value="2"/>
+			</else-if>
+			<else-if type="webpage post-weblog post">
+				<text value="4"/>
+			</else-if>
+			<else>
+				<text value="3"/>
+			</else>
+		</choose>
+	</macro>
+	<macro name="sort-jurisdiction">
+		<choose>
+			<if country="eu.int">
+				<text value="10"/>
+			</if>
+			<else-if country="coe.int">
+				<text value="11"/>
+			</else-if>
+			<else-if country="un.int">
+				<text value="12"/>
+			</else-if>
+			<else-if country="at">
+				<text value="20"/>
+			</else-if>
+			<else>
+				<text value="50"/>
+			</else>
+		</choose>
+		<text value="country"/>
+	</macro>
+	<macro name="sort-courts">
+		<choose>
+			<if country="at">
+				<choose>
+					<if court-class="o1 v1 v0" match="any">
+						<text value="10"/>
+					</if>
+					<else-if court-class="o2">
+						<text value="20"/>
+					</else-if>
+					<else-if court-class="o3 v2" match="any">
+						<text value="30"/>
+					</else-if>
+					<else>
+						<text value="40"/>
+					</else>
+				</choose>
+			</if>
+		</choose>
+	</macro>
+	<macro name="type-sort-legal">
+			<choose>
+			<if type="legal_case">
+				<text value="1"/>
+				<choose>
+					<if country="at">
+						<choose>
+							<if court-class="o1">
+								<text value="1"/>
+							</if>
+							<else-if court-class="o2">
+								<text value="2"/>
+							</else-if>
+							<else-if court-class="o3">
+								<text value="2"/>
+							</else-if>
+							<else-if court-class="o4">
+								<text value="2"/>
+							</else-if>
+							<else-if court-class="v0">
+								<text value="3"/>
+							</else-if>
+							<else-if court-class="v1">
+								<text value="4"/>
+							</else-if>
+							<else-if court-class="v2">
+								<text value="5"/>
+							</else-if>
+							<else-if court-class="v3">
+								<text value="6"/>
+							</else-if>
+							<else>
+								<text value="7"/>
+							</else>
+						</choose>
+					</if>
+				</choose>
+				<text variable="jurisdiction"/>
+			</if>
+			<else-if type="legislation">
+				<text value="10"/>
+			</else-if>
+			<else-if type="regulation bill" match="any">
+				<text value="20"/>
+			</else-if>
+		</choose>
+	</macro>
 	<!-- FUßNOTEN-->
 	<citation et-al-min="4" et-al-use-first="1" disambiguate-add-names="true" givenname-disambiguation-rule="all-names-with-initials" disambiguate-add-givenname="true">
 		<layout suffix="." delimiter="; ">
 			<choose>
 				<!--ZEITSCHRIFTEN-->
 				<if type="article-journal">
-					<text macro="authors" suffix=", "/>
-					<choose>
-						<if position="first">
-							<text macro="title" suffix=", "/>
-						</if>
-					</choose>
-					<choose>
-						<if variable="container-title-short">
-							<text variable="container-title-short" suffix=" "/>
-						</if>
-						<else>
-							<text variable="container-title" suffix=" "/>
-						</else>
-					</choose>
-					<choose>
-						<if variable="volume">
-							<text variable="volume"/>
-						</if>
-						<else>
-							<text variable="issue"/>
-						</else>
-					</choose>
-					<choose>
-						<!-- Wenn keine Seite angegeben ist, wird die Nummer des Beitrags verwendet. -->
-						<if variable="page-first">
-							<choose>
-								<if variable="locator">
-									<text variable="page-first" prefix=", "/>
-									<text variable="locator" prefix=" (" suffix=")"/>
-								</if>
-								<else>
-									<text variable="page-first" prefix=", "/>
-								</else>
-							</choose>
-						</if>
-						<else-if variable="issue">
-							<text variable="issue" prefix="/"/>
-						</else-if>
-					</choose>
+					<text macro="article-journal"/>
 				</if>
 				<!--BÜCHER UND KOMMENTARE (SELBSTÄNDIGE WERKE Rz 77 ff)-->
 				<else-if type="legal_commentary">
-					<text macro="authors"/>
-					<choose>
-						<if variable="editor">
-							<text macro="editors" prefix=" in "/>
-						</if>
-					</choose>
-					<choose>
-						<text macro="title" prefix=", "/>
-					</choose>
-					<choose>
-						<if variable="edition">
-							<text macro="edition"/>
-						</if>
-					</choose>
-					<choose>
-						<if variable="issued" position="first">
-							<text macro="issued"/>
-						</if>
-					</choose>
-					<choose>
-						<if variable="page-first">
-							<text variable="page-first" prefix=" "/>
-						</if>
-					</choose>
-					<choose>
-						<if variable="locator">
-							<text variable="locator" prefix=" "/>
-						</if>
-					</choose>
+					<text macro="legal_commentary"/>
 				</else-if>
 				<!-- FESTSCHRIFTEN und GEDÄCHTNISSCHRIFTEN; wenn Hrsg fehlt, dann TAGUNGSBÄNDE FERTIG-->
 				<else-if type="chapter">
-					<text macro="authors"/>
-					<choose>
-						<if position="first">
-							<text macro="title" prefix=", " suffix=","/>
-						</if>
-					</choose>
-					<choose>
-						<if variable="editor">
-							<text macro="editors" suffix=" (Hrsg), " prefix=" in "/>
-						</if>
-					</choose>
-					<choose>
-						<if variable="editor">
-							<choose>
-								<if variable="container-title-short">
-									<text variable="container-title-short" suffix=" "/>
-								</if>
-								<else>
-									<text variable="container-title" suffix=" "/>
-								</else>
-							</choose>
-						</if>
-						<else>
-							<choose>
-								<if variable="container-title-short">
-									<text variable="container-title-short" prefix="in " suffix=" "/>
-								</if>
-								<else>
-									<text variable="container-title" prefix=" in " suffix=" "/>
-								</else>
-							</choose>
-						</else>
-					</choose>
-					<choose>
-						<if variable="issued" position="first">
-							<date variable="issued" suffix=" ">
-								<date-part name="year" form="long" prefix=" (" suffix=")"/>
-							</date>
-						</if>
-					</choose>
-					<choose>
-						<if variable="page-first">
-							<choose>
-								<if variable="locator">
-									<text variable="page-first"/>
-									<text variable="locator" prefix=" (" suffix=")"/>
-								</if>
-								<else>
-									<text variable="page-first"/>
-								</else>
-							</choose>
-						</if>
-					</choose>
+					<text macro="chapter"/>
 				</else-if>
 				<!--ÖSTERREICHISCHE GESETZE-->
 				<!--EU VERORDNUNGEN/RICHTLINIEN-->
 				<else-if type="bill legislation statute" match="any">
-					<choose>
-						<if jurisdiction="eu.int">
-							<!-- Verordnung oder Richtlinie der Europäischen Union -->
-							<!-- Das Jurisdiction Feld wird verwendet um europäische Normen zu markieren-->
-							<choose>
-								<if position="first">
-									<choose>
-										<if variable="locator">
-											<text variable="locator" prefix=" " suffix=" "/>
-										</if>
-									</choose>
-									<text variable="title" suffix=", "/>
-									<text variable="references"/>
-								</if>
-								<else>
-									<choose>
-										<if variable="locator">
-											<text variable="locator" suffix=" "/>
-										</if>
-									</choose>
-									<text variable="title" form="short"/>
-									<text variable="references" prefix=" "/>
-								</else>
-							</choose>
-						</if>
-						<else>
-							<!-- Österreichische Normen -->
-							<choose>
-								<if variable="page locator" match="any">
-									<choose>
-										<if variable="locator">
-											<text variable="locator" suffix=" "/>
-										</if>
-										<else>
-										<text variable="page" suffix=" "/>
-										</else>
-									</choose>
-									<text macro="title"/>
-									<choose><if position="first">
-									<text variable="references" prefix=" idF "/>
-									</if></choose>
-								</if>
-								<else>
-									<text macro="title"/>
-									<choose><if position="first">
-									<text variable="references" prefix=" "/>
-									</if></choose>
-								</else>
-							</choose>
-						</else>
-					</choose>
+					<text macro="law"/>
 				</else-if>
 				<!--ENTSCHEIDUNGEN-->
 				<else-if type="legal_case">
-					<choose>
-						<if jurisdiction="at">
-							<names variable="authority" suffix=" "/>
-							<choose>
-								<if variable="publisher">
-									<text variable="title"/>
-									<choose>
-										<if variable="document-name">
-											<text variable="document-name" prefix=", " suffix="," font-style="italic"/>
-										</if>
-									</choose>
-									<text variable="publisher" prefix=" "/>
-								</if>
-								<else>
-									<date variable="issued" suffix=", ">
-										<date-part name="day" suffix=". "/>
-										<date-part name="month" form="numeric" suffix=". "/>
-										<date-part name="year"/>
-									</date>
-									<text variable="title"/>
-								</else>
-							</choose>
-						</if>
-						<else-if jurisdiction="eu.int">
-							<names variable="authority" suffix=" "/>
-							<date variable="issued" suffix=", ">
-								<date-part name="day" suffix=". "/>
-								<date-part name="month" form="numeric" suffix=". "/>
-								<date-part name="year"/>
-							</date>
-							<text variable="title"/>
-							<choose>
-								<if variable="document-name">
-									<text variable="document-name" prefix=", " font-style="italic"/>
-								</if>
-							</choose>
-							<text variable="issue" prefix=", "/>
-							<choose>
-								<if variable="locator">
-									<text variable="locator" prefix=", "/>
-								</if>
-							</choose>
-						</else-if>
-						<else-if jurisdiction="coe.int">
-							<names variable="authority" suffix=" "/>
-							<date variable="issued" suffix=" ">
-								<date-part name="day" form="numeric" suffix=". "/>
-								<date-part name="month" form="numeric" suffix=". "/>
-								<date-part name="year"/>
-							</date>
-							<choose>
-								<if variable="division">
-									<text variable="division" prefix="(" suffix=")"/>
-								</if>
-							</choose>
-							<text variable="title" prefix=", "/>
-							<choose>
-								<if variable="document-name">
-									<text variable="document-name" prefix=", " font-style="italic"/>
-								</if>
-							</choose>
-							<text variable="issue" prefix=", "/>
-							<choose>
-								<if variable="locator">
-									<text variable="locator" prefix=", "/>
-								</if>
-							</choose>	
-						</else-if>
-					</choose>
+					<text macro="cases"/>
 				</else-if>
 			</choose>
 		</layout>
 	</citation>
 	<!-- Juris-M scaffolding -->
+	<!--
 	<macro name="juris-pretitle">
 		<text value=""/>
 	</macro>
@@ -401,7 +558,7 @@
 				<group delimiter=" ">
 					<choose>
 						<if position="first" type="legislation regulation bill">
-							<!-- long form -->
+						
 							<choose>
 								<if type="bill">
 									<number variable="locator-extra"/>
@@ -477,7 +634,7 @@
 							<text macro="juris-tail"/>
 						</if>
 						<else>
-							<!-- short form -->
+							
 							<choose>
 								<if type="bill">
 									<number variable="locator-extra"/>
@@ -556,7 +713,7 @@
 				</group>
 			</if>
 			<else>
-				<!-- full form -->
+				
 				<group delimiter=", ">
 					<group delimiter=" ">
 						<group delimiter=", ">
@@ -638,122 +795,10 @@
 				<text macro="long-citation"/>
 			</else>
 		</choose>
-	</macro>
-	<!-- sort macros -->
-	<macro name="type-sort">
-		<choose>
-			<if type="legal_case regulation" match="any">
-				<text value="1"/>
-			</if>
-			<else-if type="legislation bill" match="any">
-				<text value="2"/>
-			</else-if>
-			<else-if type="webpage post-weblog post">
-				<text value="4"/>
-			</else-if>
-			<else>
-				<text value="3"/>
-			</else>
-		</choose>
-	</macro>
-	<macro name="sort-jurisdiction">
-		<choose>
-			<if country="eu.int">
-				<text value="10"/>
-			</if>
-			<else-if country="coe.int">
-				<text value="11"/>
-			</else-if>
-			<else-if country="un.int">
-				<text value="12"/>
-			</else-if>
-			<else-if country="at">
-				<text value="20"/>
-			</else-if>
-			<else>
-				<text value="50"/>
-			</else>
-		</choose>
-		<text value="country"/>
-	</macro>
-	<macro name="sort-courts">
-		<choose>
-			<if country="at">
-				<choose>
-					<if court-class="o1 v1 v0" match="any">
-						<text value="10"/>
-					</if>
-					<else-if court-class="o2">
-						<text value="20"/>
-					</else-if>
-					<else-if court-class="o3 v2" match="any">
-						<text value="30"/>
-					</else-if>
-					<else>
-						<text value="40"/>
-					</else>
-				</choose>
-			</if>
-		</choose>
-	</macro>
-	<macro name="type-sort-legal">
-		<choose>
-			<if type="legal_case">
-				<text value="1"/>
-				<choose>
-					<if country="at">
-						<choose>
-							<if court-class="o1">
-								<text value="1"/>
-							</if>
-							<else-if court-class="o2">
-								<text value="2"/>
-							</else-if>
-							<else-if court-class="o3">
-								<text value="2"/>
-							</else-if>
-							<else-if court-class="o4">
-								<text value="2"/>
-							</else-if>
-							<else-if court-class="v0">
-								<text value="3"/>
-							</else-if>
-							<else-if court-class="v1">
-								<text value="4"/>
-							</else-if>
-							<else-if court-class="v2">
-								<text value="5"/>
-							</else-if>
-							<else-if court-class="v3">
-								<text value="6"/>
-							</else-if>
-							<else>
-								<text value="7"/>
-							</else>
-						</choose>
-					</if>
-				</choose>
-				<text variable="jurisdiction"/>
-			</if>
-			<else-if type="legislation">
-				<text value="10"/>
-			</else-if>
-			<else-if type="regulation bill" match="any">
-				<text value="20"/>
-			</else-if>
-		</choose>
-	</macro>
-	<!--	<citation et-al-min="4" et-al-use-first="1" et-al-subsequent-min="3" et-al-subsequent-use-first="1" disambiguate-add-givenname="true" givenname-disambiguation-rule="all-names">
-		<sort>
-			<key macro="sort-jurisdiction"/>
-			<key macro="sort-courts"/>
-			<key variable="issued" sort="descending"/>
-		</sort>
-		<layout prefix="" suffix="." delimiter="; ">
-			<text macro="citation"/>
-		</layout>
-	</citation>-->
-	<bibliography entry-spacing="2" hanging-indent="true">
+	</macro>-->
+
+
+	<bibliography>
 		<sort>
 			<key macro="type-sort"/>
 			<key macro="sort-jurisdiction"/>
@@ -761,242 +806,30 @@
 			<key macro="author-short"/>
 			<key variable="issued" sort="descending"/>
 		</sort>
-		<layout suffix="">
-			
+		<layout>
 			<choose>
 				<!--ZEITSCHRIFTEN-->
 				<if type="article-journal">
-					<text macro="authors" suffix=", "/>
-					
-							<text macro="title" suffix=", "/>
-					
-					<choose>
-						<if variable="container-title-short">
-							<text variable="container-title-short" suffix=" "/>
-						</if>
-						<else>
-							<text variable="container-title" suffix=" "/>
-						</else>
-					</choose>
-					<choose>
-						<if variable="volume">
-							<text variable="volume"/>
-						</if>
-						<else>
-							<text variable="issue"/>
-						</else>
-					</choose>
-					<choose>
-						<!-- Wenn keine Seite angegeben ist, wird die Nummer des Beitrags verwendet. -->
-						<if variable="page-first">
-							<choose>
-								<if variable="locator">
-									<text variable="page-first" prefix=", "/>
-									<text variable="locator" prefix=" (" suffix=")"/>
-								</if>
-								<else>
-									<text variable="page-first" prefix=", "/>
-								</else>
-							</choose>
-						</if>
-						<else-if variable="issue">
-							<text variable="issue" prefix="/"/>
-						</else-if>
-					</choose>
+					<text macro="article-journal"/>
 				</if>
 				<!--BÜCHER UND KOMMENTARE (SELBSTÄNDIGE WERKE Rz 77 ff)-->
 				<else-if type="legal_commentary">
-					<text macro="authors"/>
-					<choose>
-						<if variable="editor">
-							<text macro="editors" prefix=" in "/>
-						</if>
-					</choose>
-					<choose>
-						<text macro="title" prefix=", "/>
-					</choose>
-					<choose>
-						<if variable="edition">
-							<text macro="edition"/>
-						</if>
-					</choose>
-					<choose>
-						<if variable="issued">
-							<text macro="issued"/>
-						</if>
-					</choose>
-					<choose>
-						<if variable="page-first">
-							<text variable="page-first" prefix=" "/>
-						</if>
-					</choose>
-					<choose>
-						<if variable="locator">
-							<text variable="locator" prefix=" "/>
-						</if>
-					</choose>
+					<text macro="legal_commentary"/>
 				</else-if>
 				<!-- FESTSCHRIFTEN und GEDÄCHTNISSCHRIFTEN; wenn Hrsg fehlt, dann TAGUNGSBÄNDE FERTIG-->
 				<else-if type="chapter">
-					<text macro="authors"/>
-					
-							<text macro="title" prefix=", " suffix=","/>
-					
-					<choose>
-						<if variable="editor">
-							<text macro="editors" suffix=" (Hrsg), " prefix=" in "/>
-						</if>
-					</choose>
-					<choose>
-						<if variable="editor">
-							<choose>
-								<if variable="container-title-short">
-									<text variable="container-title-short" suffix=" "/>
-								</if>
-								<else>
-									<text variable="container-title" suffix=" "/>
-								</else>
-							</choose>
-						</if>
-						<else>
-							<choose>
-								<if variable="container-title-short">
-									<text variable="container-title-short" prefix="in " suffix=" "/>
-								</if>
-								<else>
-									<text variable="container-title" prefix=" in " suffix=" "/>
-								</else>
-							</choose>
-						</else>
-					</choose>
-					<choose>
-						<if variable="issued">
-							<date variable="issued" suffix=" ">
-								<date-part name="year" form="long" prefix=" (" suffix=")"/>
-							</date>
-						</if>
-					</choose>
-					<choose>
-						<if variable="page-first">
-							<choose>
-								<if variable="locator">
-									<text variable="page-first"/>
-									<text variable="locator" prefix=" (" suffix=")"/>
-								</if>
-								<else>
-									<text variable="page-first"/>
-								</else>
-							</choose>
-						</if>
-					</choose>
+					<text macro="chapter"/>
 				</else-if>
 				<!--ÖSTERREICHISCHE GESETZE-->
 				<!--EU VERORDNUNGEN/RICHTLINIEN-->
 				<else-if type="bill legislation statute" match="any">
-					<choose>
-						<if jurisdiction="eu.int">
-							<!-- Verordnung oder Richtlinie der Europäischen Union -->
-							<!-- Das Jurisdiction Feld wird verwendet um europäische Normen zu markieren-->
-							
-									<choose>
-										<if variable="locator">
-											<text variable="locator" prefix=" " suffix=" "/>
-										</if>
-									</choose>
-									<text variable="title" suffix=", "/>
-									<text variable="references"/>
-								
-								
-						
-						</if>
-						<else>
-							<!-- Österreichische Normen -->
-							
-									<choose>
-										<if variable="locator">
-											<text variable="locator" prefix=" " suffix=" "/>
-										</if>
-									</choose>
-									<text variable="title"/>
-									<text variable="references" prefix=" "/>
-								
-						</else>
-					</choose>
+					<text macro="law"/>
 				</else-if>
 				<!--ENTSCHEIDUNGEN-->
 				<else-if type="legal_case">
-					<choose>
-						<if jurisdiction="at">
-							<names variable="authority" suffix=" "/>
-							<choose>
-								<if variable="publisher">
-									<text variable="title"/>
-									<choose>
-										<if variable="document-name">
-											<text variable="document-name" prefix=", " suffix="," font-style="italic"/>
-										</if>
-									</choose>
-									<text variable="publisher" prefix=" "/>
-								</if>
-								<else>
-									<date variable="issued" suffix=", ">
-										<date-part name="day" suffix=". "/>
-										<date-part name="month" form="numeric" suffix=". "/>
-										<date-part name="year"/>
-									</date>
-									<text variable="title"/>
-								</else>
-							</choose>
-						</if>
-						<else-if jurisdiction="eu.int">
-							<names variable="authority" suffix=" "/>
-							<date variable="issued" suffix=", ">
-								<date-part name="day" suffix=". "/>
-								<date-part name="month" form="numeric" suffix=". "/>
-								<date-part name="year"/>
-							</date>
-							<text variable="title"/>
-							<choose>
-								<if variable="document-name">
-									<text variable="document-name" prefix=", " font-style="italic"/>
-								</if>
-							</choose>
-							<text variable="issue" prefix=", "/>
-							<choose>
-								<if variable="locator">
-									<text variable="locator" prefix=", "/>
-								</if>
-							</choose>
-						</else-if>
-						<else-if jurisdiction="coe.int">
-							<names variable="authority" suffix=" "/>
-							<date variable="issued" suffix=" ">
-								<date-part name="day" form="numeric" suffix=". "/>
-								<date-part name="month" form="numeric" suffix=". "/>
-								<date-part name="year"/>
-							</date>
-							<choose>
-								<if variable="division">
-									<text variable="division" prefix="(" suffix=")"/>
-								</if>
-							</choose>
-							<text variable="title" prefix=", "/>
-							<choose>
-								<if variable="document-name">
-									<text variable="document-name" prefix=", " font-style="italic"/>
-								</if>
-							</choose>
-							<text variable="issue" prefix=", "/>
-							<choose>
-								<if variable="locator">
-									<text variable="locator" prefix=", "/>
-								</if>
-							</choose>	
-						</else-if>
-					</choose>
+					<text macro="cases"/>
 				</else-if>
 			</choose>
-			
 		</layout>
 	</bibliography>
 </style>
