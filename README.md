@@ -36,6 +36,41 @@ You can insert a page or "Randziffer" when adding a citation in Word. This will 
 #### Result
 ![image](https://user-images.githubusercontent.com/93471400/175361371-1b216cfe-5c5f-49bc-b201-2af81c324725.png)
 
+### Festschrift/Gedenkschrift
+#### Type in machine language: `chapter`
+#### Type in natural language: Book Section
+#### Fields
+German | English | Required? | Example
+---|---|---|---
+Titel | Title | :white_check_mark:|Zum Beginn der Unredlichkeit des Kondiktionsschuldners bei Ausübung von Gestaltungsechten
+?|Book Title|:white_check_mark:|FS 200 Jahre ABGB
+Autor | Author | :white_check_mark:|Rummel
+Herausgeber|Editor|not allowed!|---
+? | Date | |2011
+Seiten | Pages |:white_check_mark:|20
+#### Remark for using
+If it is a "Gedenkschrift" instead of FS... you type GedS ...
+#### Result
+![image](https://user-images.githubusercontent.com/93471400/175367093-09369f5b-af33-4193-ac94-cdbd67b1e373.png)
+
+### Tagungsbände
+#### Type in machine language: `chapter`
+#### Type in natural language: Book Section
+#### Fields
+German | English | Required? | Example
+---|---|---|---
+Titel | Title | :white_check_mark:|Hinzurechnung und Anrechnung im neuen Erbrecht
+?|Book Title|:white_check_mark:|Gesellschaftsrecht und Erbrecht
+Autor | Author | :white_check_mark:|Apathy
+Herausgeber|Editor|:white_check_mark:|Rüffler
+? | Date | |2016
+Seiten | Pages |:white_check_mark:|1
+#### Remark for using
+Editor is absolutely required as this is the differenciator between FS/GedS and Tagungsbände
+#### Result
+![image](https://user-images.githubusercontent.com/93471400/175368123-e897f1f2-4531-43ac-9ba9-b712f1a4f0f8.png)
+
+
 ### Gesetz (Österreich)/Law (Austria)
 #### Type in machine language: `statute`
 #### Type in natural language: Gesetz/Statute
@@ -71,3 +106,56 @@ Geschichte|History|:white_check_mark:|ABl L 2003/299, 9
 #### Results
 ![image](https://user-images.githubusercontent.com/93471400/175364893-d3473828-a5f2-4287-9c1d-1ec5fe3f5737.png)
 
+### Österreichische Entscheidungen
+#### Type in machine language: `legal_case`
+#### Type in natural language: Case
+#### Fields for citation (ohne Fundstelle)
+German | English | Required? | Example
+---|---|---|---
+? | Case name| :white_check_mark:|7 Ob 120/04d
+?|Court|:white_check_mark:|OGH
+?|Date Decided|:white_check_mark:|16.07.2004
+Jurisdiktion|Jurisdiction|:white_check_mark:|Austria-AT
+#### Fields for citation (ohne Fundstelle)
+German | English | Required? | Example
+---|---|---|---
+? | Case name| :white_check_mark:|7 Ob 120/04d
+?|Court|:white_check_mark:|OGH
+?|Date Decided|not displayed|16.07.2004
+?|Publisher|:white_check_mark:|ZVR 1999/112
+?|Document Name||Mustertitel der erfundenen Entscheidung
+Jurisdiktion|Jurisdiction|:white_check_mark:|Austria-AT
+#### Results
+##### Ohne Fundstelle 
+![image](https://user-images.githubusercontent.com/93471400/175369968-e093976d-11dd-4dc3-b0bf-2487d220afff.png)
+##### Mit Fundstelle
+![image](https://user-images.githubusercontent.com/93471400/175370930-6a6baf23-409a-42bb-9aea-013d42425f8e.png)
+
+### EuGH Entscheidungen
+#### Type in machine language: `legal_case`
+#### Type in natural language: Case
+#### Fields for citation 
+German | English | Required? | Example
+---|---|---|---
+? | Case name| :white_check_mark:|C-387/10
+?|Court|:white_check_mark:|EuGH
+?|Date Decided|:white_check_mark:|16.07.2004
+Jurisdiktion|Jurisdiction|:white_check_mark:|European Union-EU.INT
+?|Document Name||Mustertitel der erfundenen Entscheidung
+?|Issue|:white_check_mark:|ECLI:EU:C:2005:446
+#### Result
+![image](https://user-images.githubusercontent.com/93471400/175372594-88eadc07-17b9-4342-bad8-4842cd7625e0.png)
+### EGMR Entscheidungen
+#### Type in machine language: `legal_case`
+#### Type in natural language: Case
+#### Fields for citation 
+German | English | Required? | Example
+---|---|---|---
+? | Case name| :white_check_mark:|56483/00
+?|Court|:white_check_mark:|EGMR
+?|Division||GK
+?|Date Decided|:white_check_mark:|07.04.2005
+Jurisdiktion|Jurisdiction|:white_check_mark:|Council of Europe-COE.INT
+?|Document Name||Jancikova/Österreich
+#### Result
+![image](https://user-images.githubusercontent.com/93471400/175373399-c8afb488-1aa0-4180-b2d2-1f4acc99f1c3.png)
