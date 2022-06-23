@@ -4,7 +4,7 @@
 		<title>JM AZR (Erstzitat lang mit Verzeichnissen)</title>
 		<title-short>JM AZR (Langzitat)</title-short>
 		<id>https://juris-m.github.io/styles/jm-azr</id>
-		<!-- <link href="https://juris-m.github.io/styles/jm-azr" rel="self"/>-->
+		<link href="https://juris-m.github.io/styles/jm-azr" rel="self"/>
 		<link href="https://www.manz.at/unternehmen/autorenservice/azr" rel="documentation"/>
 		<link href="https://learn.wu.ac.at/open/fit4research/azr" rel="documentation"/>
 		<author>
@@ -15,7 +15,6 @@
 		<category field="law"/>
 		<summary>AZR 8.</summary>
 		<updated>2022-06-07T16:07:43+02:00</updated>
-		<rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
 	</info>
 	<locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="de">
 		<style-options jurisdiction-preference="de deAT"/>
@@ -56,14 +55,6 @@
 			<date-part name="year"/>
 		</date>
 	</locale>
-	<macro name="dummy-disambiguate">
-		<choose>
-			<if disambiguate="true"/>
-		</choose>
-	</macro>
-	<macro name="noauthor">
-		<text value="OV"/>
-	</macro>
 	<macro name="title">
 		<choose>
 			<if>
@@ -93,10 +84,6 @@
 		<names variable="editor" font-style="italic">
 			<name name-as-sort-order="all" delimiter="/"/>
 			<et-al term="et-al" font-style="italic"/>
-			<substitute>
-				<names variable="translator" font-style="italic"/>
-				<text macro="noauthor" font-style="italic"/>
-			</substitute>
 		</names>
 	</macro>
 	<macro name="edition">
@@ -108,6 +95,7 @@
 		</date>
 	</macro>
 	<!--Zitierte Werke-->
+	<!--ZEITSCHRIFTEN-->
 	<macro name="article-journal">
 		<text macro="authors" suffix=", "/>
 		<choose>
@@ -153,6 +141,7 @@
 			</else-if>
 		</choose>
 	</macro>
+	<!--BÜCHER UND KOMMENTARE (SELBSTÄNDIGE WERKE Rz 77 ff)-->
 	<macro name="legal_commentary">
 		<text macro="authors"/>
 		<choose>
@@ -169,13 +158,17 @@
 			</if>
 		</choose>
 		<choose>
-			<if variable="issued"><choose>
-			<if>
-				<conditions match="any">
-					<condition position="first"/>
-					<condition context="bibliography"/></conditions>
-				<text macro="issued"/>
-			</if></choose></if>
+			<if variable="issued">
+				<choose>
+					<if>
+						<conditions match="any">
+							<condition position="first"/>
+							<condition context="bibliography"/>
+						</conditions>
+						<text macro="issued"/>
+					</if>
+				</choose>
+			</if>
 		</choose>
 		<choose>
 			<if variable="page-first">
@@ -188,6 +181,7 @@
 			</if>
 		</choose>
 	</macro>
+	<!-- FESTSCHRIFTEN und GEDÄCHTNISSCHRIFTEN; wenn Hrsg fehlt, dann TAGUNGSBÄNDE FERTIG-->
 	<macro name="chapter">
 		<text macro="authors"/>
 		<choose>
@@ -227,15 +221,19 @@
 			</else>
 		</choose>
 		<choose>
-			<if variable="issued"><choose>
-			<if>
-				<conditions match="any">
-					<condition position="first"/>
-					<condition context="bibliography"/></conditions>
-				<date variable="issued" suffix=" ">
-					<date-part name="year" form="long" prefix=" (" suffix=")"/>
-				</date>
-			</if></choose></if>
+			<if variable="issued">
+				<choose>
+					<if>
+						<conditions match="any">
+							<condition position="first"/>
+							<condition context="bibliography"/>
+						</conditions>
+						<date variable="issued" suffix=" ">
+							<date-part name="year" form="long" prefix=" (" suffix=")"/>
+						</date>
+					</if>
+				</choose>
+			</if>
 		</choose>
 		<choose>
 			<if variable="page-first">
@@ -251,6 +249,8 @@
 			</if>
 		</choose>
 	</macro>
+	<!--ÖSTERREICHISCHE GESETZE-->
+	<!--EU VERORDNUNGEN/RICHTLINIEN-->
 	<macro name="law">
 		<choose>
 			<if jurisdiction="eu.int">
@@ -258,10 +258,10 @@
 				<!-- Das Jurisdiction Feld wird verwendet um europäische Normen zu markieren-->
 				<choose>
 					<if>
-				<conditions match="any">
-					<condition position="first"/>
-					<condition context="bibliography"/>
-				</conditions>
+						<conditions match="any">
+							<condition position="first"/>
+							<condition context="bibliography"/>
+						</conditions>
 						<choose>
 							<if variable="locator">
 								<text variable="locator" prefix=" " suffix=" "/>
@@ -296,10 +296,10 @@
 						<text macro="title"/>
 						<choose>
 							<if>
-				<conditions match="any">
-					<condition position="first"/>
-					<condition context="bibliography"/>
-				</conditions>
+								<conditions match="any">
+									<condition position="first"/>
+									<condition context="bibliography"/>
+								</conditions>
 								<text variable="references" prefix=" idF "/>
 							</if>
 						</choose>
@@ -308,10 +308,10 @@
 						<text macro="title"/>
 						<choose>
 							<if>
-				<conditions match="any">
-					<condition position="first"/>
-					<condition context="bibliography"/>
-				</conditions>
+								<conditions match="any">
+									<condition position="first"/>
+									<condition context="bibliography"/>
+								</conditions>
 								<text variable="references" prefix=" "/>
 							</if>
 						</choose>
@@ -320,6 +320,7 @@
 			</else>
 		</choose>
 	</macro>
+	<!--ENTSCHEIDUNGEN-->
 	<macro name="cases">
 		<choose>
 			<if jurisdiction="at">
@@ -391,7 +392,10 @@
 			</else-if>
 		</choose>
 	</macro>
-		<!-- sort macros -->
+	<!--WEBSEITEN-->
+	<!--MATERIALIEN-->
+	<!--BUCHBESPRECHUNG-->
+	<!-- sort macros -->
 	<macro name="type-sort">
 		<choose>
 			<if type="legal_case regulation" match="any">
@@ -449,7 +453,7 @@
 		</choose>
 	</macro>
 	<macro name="type-sort-legal">
-			<choose>
+		<choose>
 			<if type="legal_case">
 				<text value="1"/>
 				<choose>
@@ -507,7 +511,7 @@
 				<else-if type="legal_commentary">
 					<text macro="legal_commentary"/>
 				</else-if>
-				<!-- FESTSCHRIFTEN und GEDÄCHTNISSCHRIFTEN; wenn Hrsg fehlt, dann TAGUNGSBÄNDE FERTIG-->
+				<!-- FESTSCHRIFTEN und GEDÄCHTNISSCHRIFTEN; wenn Hrsg fehlt, dann TAGUNGSBÄNDE -->
 				<else-if type="chapter">
 					<text macro="chapter"/>
 				</else-if>
@@ -523,281 +527,7 @@
 			</choose>
 		</layout>
 	</citation>
-	<!-- Juris-M scaffolding -->
-	<!--
-	<macro name="juris-pretitle">
-		<text value=""/>
-	</macro>
-	<macro name="juris-title">
-		<text value=""/>
-	</macro>
-	<macro name="juris-main">
-		<text value=""/>
-	</macro>
-	<macro name="juris-tail">
-		<text value=""/>
-	</macro>
-	<macro name="juris-pretitle-short">
-		<text value=""/>
-	</macro>
-	<macro name="juris-title-short">
-		<text value=""/>
-	</macro>
-	<macro name="juris-main-short">
-		<text value=""/>
-	</macro>
-	<macro name="juris-tail-short">
-		<text value=""/>
-	</macro>
-	<macro name="juris-locator">
-		<text value=""/>
-	</macro>
-	<macro name="jurism">
-		<choose>
-			<if context="citation">
-				<group delimiter=" ">
-					<choose>
-						<if position="first" type="legislation regulation bill">
-						
-							<choose>
-								<if type="bill">
-									<number variable="locator-extra"/>
-								</if>
-							</choose>
-							<group delimiter=", ">
-								<text macro="juris-pretitle"/>
-								<choose>
-									<if>
-										<conditions match="any">
-											<condition match="all" variable="title"/>
-											<condition match="all" type="hearing" variable="number"/>
-										</conditions>
-										<choose>
-											<if>
-												<conditions match="any">
-													<condition variable="admin-flag"/>
-													<condition match="all" type="report bill legislation regulation patent" variable="jurisdiction"/>
-												</conditions>
-												<text macro="juris-title"/>
-											</if>
-											<else>
-												<text macro="juris-title" font-style="italic"/>
-											</else>
-										</choose>
-									</if>
-								</choose>
-								<choose>
-									<if>
-										<conditions match="any">
-											<condition type="legal_case bill"/>
-											<condition match="none" variable="title"/>
-											<condition match="all" type="regulation" variable="title gazette-flag"/>
-											<condition match="all" type="legislation" variable="title gazette-flag"/>
-										</conditions>
-										<text macro="juris-main"/>
-									</if>
-								</choose>
-								<choose>
-									<if>
-										<conditions>
-											<condition type="legal_case" country="eu.int coe.int"/>
-											<condition variable="commenter page issue" match="none"/>
-										</conditions>
-										<text macro="juris-locator"/>
-									</if>
-									<else>
-										<group require="comma-safe-numbers-only">
-											<text macro="juris-locator"/>
-										</group>
-									</else>
-								</choose>
-							</group>
-							<choose>
-								<if variable="locator">
-									<choose>
-										<if locator="section">
-											<group reject="comma-safe-numbers-only">
-												<text macro="juris-locator" label-form="symbol"/>
-											</group>
-										</if>
-										<else>
-											<group reject="comma-safe-numbers-only">
-												<text macro="juris-locator" label-form="short"/>
-											</group>
-										</else>
-									</choose>
-								</if>
-								<else-if type="legal_case" country="at">
-									<text macro="juris-locator"/>
-								</else-if>
-							</choose>
-							<text macro="juris-tail"/>
-						</if>
-						<else>
-							
-							<choose>
-								<if type="bill">
-									<number variable="locator-extra"/>
-								</if>
-							</choose>
-							<group delimiter=", ">
-								<text macro="juris-pretitle"/>
-								<choose>
-									<if>
-										<conditions match="any">
-											<condition match="all" variable="title"/>
-											<condition match="all" type="hearing" variable="number"/>
-										</conditions>
-										<choose>
-											<if>
-												<conditions match="any">
-													<condition variable="admin-flag"/>
-													<condition match="all" type="report bill legislation regulation patent" variable="jurisdiction"/>
-												</conditions>
-												<text macro="juris-title-short"/>
-											</if>
-											<else>
-												<text macro="juris-title-short" font-style="italic"/>
-											</else>
-										</choose>
-									</if>
-								</choose>
-								<choose>
-									<if>
-										<conditions match="any">
-											<condition type="legal_case bill"/>
-											<condition match="none" variable="title"/>
-											<condition match="all" type="regulation" variable="title gazette-flag"/>
-											<condition match="all" type="legislation" variable="title gazette-flag"/>
-										</conditions>
-										<text macro="juris-main"/>
-									</if>
-								</choose>
-								<choose>
-									<if>
-										<conditions>
-											<condition type="legal_case" country="eu.int coe.int"/>
-											<condition variable="commenter page issue" match="none"/>
-										</conditions>
-										<text macro="juris-locator"/>
-									</if>
-									<else>
-										<group require="comma-safe-numbers-only">
-											<text macro="juris-locator"/>
-										</group>
-									</else>
-								</choose>
-							</group>
-							<choose>
-								<if variable="locator">
-									<choose>
-										<if locator="section">
-											<group reject="comma-safe-numbers-only">
-												<text macro="juris-locator" label-form="symbol"/>
-											</group>
-										</if>
-										<else>
-											<group reject="comma-safe-numbers-only">
-												<text macro="juris-locator" label-form="short"/>
-											</group>
-										</else>
-									</choose>
-								</if>
-								<else-if type="legal_case" country="at">
-									<text macro="juris-locator"/>
-								</else-if>
-							</choose>
-							<text macro="juris-tail-short"/>
-						</else>
-					</choose>
-				</group>
-			</if>
-			<else>
-				
-				<group delimiter=", ">
-					<group delimiter=" ">
-						<group delimiter=", ">
-							<choose>
-								<if type="hearing report legal_case">
-									<text macro="juris-pretitle"/>
-								</if>
-							</choose>
-							<choose>
-								<if type="hearing" match="any">
-									<text macro="juris-title" font-style="italic"/>
-								</if>
-								<else>
-									<text macro="juris-title"/>
-								</else>
-							</choose>
-							<choose>
-								<if>
-									<conditions match="all">
-										<condition match="all" type="report"/>
-										<condition match="none" variable="title committee"/>
-									</conditions>
-									<text macro="juris-main" label-form="symbol"/>
-								</if>
-								<else-if>
-									<conditions match="all">
-										<condition match="all" type="hearing"/>
-										<condition match="none" variable="committee"/>
-									</conditions>
-									<text macro="juris-main" label-form="symbol"/>
-								</else-if>
-								<else>
-									<text macro="juris-main" label-form="symbol"/>
-								</else>
-							</choose>
-							<group require="comma-safe-numbers-only">
-								<text macro="juris-locator" label-form="symbol"/>
-							</group>
-						</group>
-						<choose>
-							<if locator="section">
-								<group reject="comma-safe-numbers-only">
-									<text macro="juris-locator" label-form="symbol"/>
-								</group>
-							</if>
-							<else-if locator="page" match="none">
-								<group reject="comma-safe-numbers-only">
-									<text macro="juris-locator" label-form="short"/>
-								</group>
-							</else-if>
-							<else>
-								<text macro="juris-locator"/>
-							</else>
-						</choose>
-						<text macro="juris-tail"/>
-					</group>
-					<choose>
-						<if>
-							<conditions match="all">
-								<condition type="legal_case" match="any"/>
-								<condition match="none" variable="document-name archive container-title"/>
-							</conditions>
-							<text variable="URL"/>
-						</if>
-					</choose>
-				</group>
-			</else>
-		</choose>
-	</macro>
-	<macro name="citation">
-		<choose>
-			<if position="subsequent" match="any">
-				<text macro="short-citation"/>
-			</if>
-			<else-if position="container-subsequent">
-				<text macro="container-subsequent-citation"/>
-			</else-if>
-			<else>
-				<text macro="long-citation"/>
-			</else>
-		</choose>
-	</macro>-->
-
-
+	<!-- LITERATURVERZEICHNIS -->
 	<bibliography>
 		<sort>
 			<key macro="type-sort"/>
@@ -816,7 +546,7 @@
 				<else-if type="legal_commentary">
 					<text macro="legal_commentary"/>
 				</else-if>
-				<!-- FESTSCHRIFTEN und GEDÄCHTNISSCHRIFTEN; wenn Hrsg fehlt, dann TAGUNGSBÄNDE FERTIG-->
+				<!-- FESTSCHRIFTEN und GEDÄCHTNISSCHRIFTEN; wenn Hrsg fehlt, dann TAGUNGSBÄNDE -->
 				<else-if type="chapter">
 					<text macro="chapter"/>
 				</else-if>
