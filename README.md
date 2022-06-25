@@ -53,7 +53,7 @@ If it is a "Gedenkschrift" instead of FS... you type GedS ...
 #### Result
 ![image](https://user-images.githubusercontent.com/93471400/175367093-09369f5b-af33-4193-ac94-cdbd67b1e373.png)
 
-### Tagungsbände
+### Tagungsbände und Buchkapitel
 #### Type in machine language: `chapter`
 #### Type in natural language: Book Section
 #### Fields
@@ -64,6 +64,7 @@ Titel | Title | :white_check_mark:|Hinzurechnung und Anrechnung im neuen Erbrech
 Autor | Author | :white_check_mark:|Apathy
 Herausgeber|Editor|:white_check_mark:|Rüffler
 ? | Date | |2016
+? | Edition | |2
 Seiten | Pages |:white_check_mark:|1
 #### Remark for using
 Editor is absolutely required as this is the differenciator between FS/GedS and Tagungsbände
