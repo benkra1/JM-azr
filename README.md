@@ -36,6 +36,22 @@ You can insert a page or "Randziffer" when adding a citation in Word. This will 
 #### Result
 ![image](https://user-images.githubusercontent.com/93471400/175361371-1b216cfe-5c5f-49bc-b201-2af81c324725.png)
 
+### Ganzes Buch/Whole Book
+#### Type in machine language: `book`
+#### Type in natural language: Buch/Book
+#### Fields
+German | English | Required? | Example
+---|---|---|---
+Titel | Title | :white_check_mark:|Bürgerliches Recht
+Autor | Author | :white_check_mark:|Perner
+Herausgeber|Editor||
+Ausgabe|Edition||6
+? | Date | |2019
+Seiten | Pages ||
+Kurztitel|Short Title||
+#### Result
+![image](https://user-images.githubusercontent.com/93471400/175806787-e2ea4510-16d8-4067-98a1-a37ee48d9319.png)
+
 ### Festschrift/Gedenkschrift
 #### Type in machine language: `chapter`
 #### Type in natural language: Book Section
@@ -53,7 +69,7 @@ If it is a "Gedenkschrift" instead of FS... you type GedS ...
 #### Result
 ![image](https://user-images.githubusercontent.com/93471400/175367093-09369f5b-af33-4193-ac94-cdbd67b1e373.png)
 
-### Tagungsbände
+### Tagungsbände und Buchkapitel
 #### Type in machine language: `chapter`
 #### Type in natural language: Book Section
 #### Fields
@@ -64,6 +80,7 @@ Titel | Title | :white_check_mark:|Hinzurechnung und Anrechnung im neuen Erbrech
 Autor | Author | :white_check_mark:|Apathy
 Herausgeber|Editor|:white_check_mark:|Rüffler
 ? | Date | |2016
+? | Edition | |2
 Seiten | Pages |:white_check_mark:|1
 #### Remark for using
 Editor is absolutely required as this is the differenciator between FS/GedS and Tagungsbände
@@ -103,6 +120,7 @@ German | English | Required? | Example
 Titel | Name of Act | :white_check_mark:|RL (EG) 2003/88 des Europäischen Parlaments und des Rates vom 4. 11. 2003 über bestimmte Aspekte der Arbeitszeitgestaltung (Arbeitszeit-Richtlinie)
 Kurztitel|Short Title||AZ-RL 2003/88
 Geschichte|History|:white_check_mark:|ABl L 2003/299, 9
+Jurisdiktion|Jurisdiction|:white_check_mark:|European Union-EU.INT
 #### Results
 ![image](https://user-images.githubusercontent.com/93471400/175364893-d3473828-a5f2-4287-9c1d-1ec5fe3f5737.png)
 
