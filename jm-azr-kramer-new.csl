@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<style xmlns="http://purl.org/net/xbiblio/csl" version="1.1mlz1" class="note" default-locale="de-AT" name-delimiter="/" names-delimiter="/" name-form="short" delimiter-precedes-et-al="never" delimiter-precedes-last="always" initialize-with="." initialize="true" track-containers="chapter legal_commentary">
+<style xmlns="http://purl.org/net/xbiblio/csl" version="1.1mlz1" class="note" default-locale="de-AT" name-delimiter="/" name-form="short" delimiter-precedes-et-al="never" delimiter-precedes-last="always" initialize-with="." initialize="true">
 	<info>
 		<title>JM AZR (Erstzitat lang mit Verzeichnissen)</title>
 		<title-short>JM AZR (Langzitat)</title-short>
-		<id>https://juris-m.github.io/styles/jm-azr</id>
-		<link href="https://juris-m.github.io/styles/jm-azr" rel="self"/>
+		<id>https://github.com/benkra1/JM-azr</id>
+		<link href="https://github.com/benkra1/JM-azr" rel="self"/>
 		<link href="https://www.manz.at/unternehmen/autorenservice/azr" rel="documentation"/>
 		<link href="https://learn.wu.ac.at/open/fit4research/azr" rel="documentation"/>
 		<author>
@@ -14,10 +14,11 @@
 		<category citation-format="note"/>
 		<category field="law"/>
 		<summary>AZR 8.</summary>
-		<updated>2022-06-07T16:07:43+02:00</updated>
+		<updated>2022-06-25T16:07:43+02:00</updated>
+		 <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
 	</info>
 	<locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="de">
-		<style-options jurisdiction-preference="de deAT"/>
+		<style-options jurisdiction-preference="AT"/>
 		<terms>
 			<term name="et-al">ea</term>
 			<term name="article" form="short">
@@ -49,11 +50,6 @@
 				<multiple>Rz</multiple>
 			</term>
 		</terms>
-		<date form="text" delimiter=". ">
-			<date-part name="day" form="numeric"/>
-			<date-part name="month" form="numeric"/>
-			<date-part name="year"/>
-		</date>
 	</locale>
 	<macro name="title">
 		<choose>
@@ -90,8 +86,8 @@
 		<text variable="edition" vertical-align="sup"/>
 	</macro>
 	<macro name="issued">
-		<date variable="issued" suffix=" ">
-			<date-part name="year" form="long" prefix=" (" suffix=")"/>
+		<date variable="issued" prefix=" (" suffix=")">
+			<date-part name="year" form="long" />
 		</date>
 	</macro>
 	<!--Zitierte Werke-->
@@ -149,9 +145,7 @@
 				<text macro="editors" prefix=" in "/>
 			</if>
 		</choose>
-		<choose>
-			<text macro="title" prefix=", "/>
-		</choose>
+		<text macro="title" prefix=", "/>
 		<choose>
 			<if variable="edition">
 				<text macro="edition"/>
@@ -160,11 +154,40 @@
 		<choose>
 			<if variable="issued">
 				<choose>
-					<if>
-						<conditions match="any">
-							<condition position="first"/>
-							<condition context="bibliography"/>
-						</conditions>
+					<if position="first" context="bibliography" match="any">
+						<text macro="issued"/>
+					</if>
+				</choose>
+			</if>
+		</choose>
+		<choose>
+			<if variable="page-first">
+				<text variable="page-first" prefix=" "/>
+			</if>
+		</choose>
+		<choose>
+			<if variable="locator">
+				<text variable="locator" prefix=" "/>
+			</if>
+		</choose>
+	</macro>
+	<macro name="book">
+		<text macro="authors"/>
+		<choose>
+			<if variable="editor">
+				<text macro="editors" prefix=" in "/>
+			</if>
+		</choose>
+		<text macro="title" prefix=", "/>
+		<choose>
+			<if variable="edition">
+				<text macro="edition"/>
+			</if>
+		</choose>
+		<choose>
+			<if variable="issued">
+				<choose>
+					<if position="first" context="bibliography" match="any">
 						<text macro="issued"/>
 					</if>
 				</choose>
@@ -202,23 +225,28 @@
 			<if variable="editor">
 				<choose>
 					<if variable="container-title-short">
-						<text variable="container-title-short" suffix=" "/>
+						<text variable="container-title-short"/>
 					</if>
 					<else>
-						<text variable="container-title" suffix=" "/>
+						<text variable="container-title"/>
 					</else>
 				</choose>
 			</if>
 			<else>
 				<choose>
 					<if variable="container-title-short">
-						<text variable="container-title-short" prefix="in " suffix=" "/>
+						<text variable="container-title-short" prefix="in "/>
 					</if>
 					<else>
-						<text variable="container-title" prefix=" in " suffix=" "/>
+						<text variable="container-title" prefix=" in "/>
 					</else>
 				</choose>
 			</else>
+		</choose>
+		<choose>
+			<if variable="edition">
+				<text macro="edition"/>
+			</if>
 		</choose>
 		<choose>
 			<if variable="issued">
@@ -228,9 +256,7 @@
 							<condition position="first"/>
 							<condition context="bibliography"/>
 						</conditions>
-						<date variable="issued" suffix=" ">
-							<date-part name="year" form="long" prefix=" (" suffix=")"/>
-						</date>
+						<text macro="issued"/>
 					</if>
 				</choose>
 			</if>
@@ -239,11 +265,11 @@
 			<if variable="page-first">
 				<choose>
 					<if variable="locator">
-						<text variable="page-first"/>
+						<text variable="page-first" prefix=" "/>
 						<text variable="locator" prefix=" (" suffix=")"/>
 					</if>
 					<else>
-						<text variable="page-first"/>
+						<text variable="page-first" prefix=" "/>
 					</else>
 				</choose>
 			</if>
@@ -323,7 +349,7 @@
 	<!--ENTSCHEIDUNGEN-->
 	<macro name="cases">
 		<choose>
-			<if jurisdiction="at">
+			<if country="at">
 				<names variable="authority" suffix=" "/>
 				<choose>
 					<if variable="publisher">
@@ -345,7 +371,7 @@
 					</else>
 				</choose>
 			</if>
-			<else-if jurisdiction="eu.int">
+			<else-if country="eu.int">
 				<names variable="authority" suffix=" "/>
 				<date variable="issued" suffix=", ">
 					<date-part name="day" suffix=". "/>
@@ -365,7 +391,7 @@
 					</if>
 				</choose>
 			</else-if>
-			<else-if jurisdiction="coe.int">
+			<else-if country="coe.int">
 				<names variable="authority" suffix=" "/>
 				<date variable="issued" suffix=" ">
 					<date-part name="day" form="numeric" suffix=". "/>
@@ -499,6 +525,9 @@
 			</else-if>
 		</choose>
 	</macro>
+
+
+	
 	<!-- FUßNOTEN-->
 	<citation et-al-min="4" et-al-use-first="1" disambiguate-add-names="true" givenname-disambiguation-rule="all-names-with-initials" disambiguate-add-givenname="true">
 		<layout suffix="." delimiter="; ">
@@ -510,6 +539,9 @@
 				<!--BÜCHER UND KOMMENTARE (SELBSTÄNDIGE WERKE Rz 77 ff)-->
 				<else-if type="legal_commentary">
 					<text macro="legal_commentary"/>
+				</else-if>
+				<else-if type="book">
+					<text macro="book"/>
 				</else-if>
 				<!-- FESTSCHRIFTEN und GEDÄCHTNISSCHRIFTEN; wenn Hrsg fehlt, dann TAGUNGSBÄNDE -->
 				<else-if type="chapter">
@@ -524,6 +556,9 @@
 				<else-if type="legal_case">
 					<text macro="cases"/>
 				</else-if>
+				<else>
+				<text term="Not configured. Please use another type or check for mistakes"/>
+				</else>
 			</choose>
 		</layout>
 	</citation>
@@ -545,6 +580,9 @@
 				<!--BÜCHER UND KOMMENTARE (SELBSTÄNDIGE WERKE Rz 77 ff)-->
 				<else-if type="legal_commentary">
 					<text macro="legal_commentary"/>
+				</else-if>
+				<else-if type="book">
+					<text macro="book"/>
 				</else-if>
 				<!-- FESTSCHRIFTEN und GEDÄCHTNISSCHRIFTEN; wenn Hrsg fehlt, dann TAGUNGSBÄNDE -->
 				<else-if type="chapter">
