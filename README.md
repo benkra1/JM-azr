@@ -187,9 +187,9 @@ German | English | Required? | Example
 ? | Title| :white_check_mark:|Überwachen, Blocken, Delisten - Zur Reichweite der EU-Sanktionen gegen RT und Sputnik
 ?|Author|:white_check_mark:|Lehofer
 ?|URL|:white_check_mark:|https://blog.lehofer.at/2022/03/uberwachen-blocken-delisten.html
-|Locator (=Page added in Word)||
+?|Locator (=Page added in Word)||
 ?|Date|:white_check_mark:|22.03.2022
-|Accessed|:white_check_mark:|26.06.2022
+?|Accessed|:white_check_mark:|26.06.2022
 #### Remark for using
 Choose either Date (Stand: 22.03.2022) *OR* Accessed (Abgerufen am: 26.06.2022). If you enter both, Date will be used.
 #### Result
