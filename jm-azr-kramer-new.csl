@@ -15,7 +15,7 @@
 		<category field="law"/>
 		<summary>AZR 8.</summary>
 		<updated>2022-06-25T16:07:43+02:00</updated>
-		 <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
+		<rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
 	</info>
 	<locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="de">
 		<style-options jurisdiction-preference="AT"/>
@@ -87,7 +87,7 @@
 	</macro>
 	<macro name="issued">
 		<date variable="issued" prefix=" (" suffix=")">
-			<date-part name="year" form="long" />
+			<date-part name="year" form="long"/>
 		</date>
 	</macro>
 	<!--Zitierte Werke-->
@@ -419,6 +419,20 @@
 		</choose>
 	</macro>
 	<!--WEBSEITEN-->
+	<macro name="web">
+		<text macro="authors"/>
+		<text variable="title" prefix=", "/>
+		<text variable="URL" prefix=", "/>
+		<text variable="locator" prefix=" (" suffix="), "/>
+		<choose>
+			<if variable="issued">
+				<date variable="issued" prefix=" (Stand " suffix=")" form="numeric"/>
+			</if>
+			<else>
+				<date variable="accessed" prefix=" (aufgerufen am " suffix=")" form="numeric"/>
+			</else>
+		</choose>
+	</macro>
 	<!--MATERIALIEN-->
 	<!--BUCHBESPRECHUNG-->
 	<!-- sort macros -->
@@ -525,9 +539,6 @@
 			</else-if>
 		</choose>
 	</macro>
-
-
-	
 	<!-- FUßNOTEN-->
 	<citation et-al-min="4" et-al-use-first="1" disambiguate-add-names="true" givenname-disambiguation-rule="all-names-with-initials" disambiguate-add-givenname="true">
 		<layout suffix="." delimiter="; ">
@@ -556,8 +567,17 @@
 				<else-if type="legal_case">
 					<text macro="cases"/>
 				</else-if>
+				<else-if type="webpage post-weblog" match="any">
+					<text macro="web"/>
+				</else-if>
 				<else>
-				<text term="Not configured. Please use another type or check for mistakes"/>
+					<group delimiter=", ">
+						<text macro="authors" font-style="italic"/>
+						<text variable="title"/>
+						<text variable="container-title"/>
+						<date form="numeric" variable="issued"/>
+						<text variable="locator" prefix="(" suffix=")"/>
+					</group>
 				</else>
 			</choose>
 		</layout>
@@ -596,6 +616,9 @@
 				<!--ENTSCHEIDUNGEN-->
 				<else-if type="legal_case">
 					<text macro="cases"/>
+				</else-if>
+				<else-if type="webpage post-weblog" match="any">
+					<text macro="web"/>
 				</else-if>
 			</choose>
 		</layout>
