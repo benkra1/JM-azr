@@ -193,4 +193,5 @@ German | English | Required? | Example
 #### Remark for using
 Choose either Date (Stand: 22.03.2022) *OR* Accessed (Abgerufen am: 26.06.2022). If you enter both, Date will be used.
 #### Result
-![image](https://user-images.githubusercontent.com/93471400/175373399-c8afb488-1aa0-4180-b2d2-1f4acc99f1c3.png)
+![image](https://user-images.githubusercontent.com/93471400/175807679-cbf76825-04f6-47b1-89c7-594ce9968898.png)
+
