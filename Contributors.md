@@ -1,4 +1,4 @@
-#Contributions/Sources according to http://creativecommons.org/licenses/by-sa/3.0/
+# Contributions/Sources according to http://creativecommons.org/licenses/by-sa/3.0/
 Following sources have been used in creating this style:
 * https://github.com/Juris-M/jm-styles/blob/master/jm-azr.csl
   - Primary source to understand and use the adaptions to CSL-M for Juris-M
