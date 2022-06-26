@@ -36,6 +36,22 @@ You can insert a page or "Randziffer" when adding a citation in Word. This will 
 #### Result
 ![image](https://user-images.githubusercontent.com/93471400/175361371-1b216cfe-5c5f-49bc-b201-2af81c324725.png)
 
+### Ganzes Buch/Whole Book
+#### Type in machine language: `book`
+#### Type in natural language: Buch/Book
+#### Fields
+German | English | Required? | Example
+---|---|---|---
+Titel | Title | :white_check_mark:|Bürgerliches Recht
+Autor | Author | :white_check_mark:|Perner
+Herausgeber|Editor||
+Ausgabe|Edition||6
+? | Date | |2019
+Seiten | Pages ||
+Kurztitel|Short Title||
+#### Result
+![image](https://user-images.githubusercontent.com/93471400/175806787-e2ea4510-16d8-4067-98a1-a37ee48d9319.png)
+
 ### Festschrift/Gedenkschrift
 #### Type in machine language: `chapter`
 #### Type in natural language: Book Section
