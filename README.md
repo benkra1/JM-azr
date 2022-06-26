@@ -16,7 +16,7 @@ Seiten | Pages |:white_check_mark:|106
 #### Remark for using
 You can insert a page when adding a citation in Word. This page will be shown in brackets at the end. Adding a first name does not make a difference in displaying the citation.
 #### Result
-![image](https://user-images.githubusercontent.com/93471400/175359585-caad3f6b-5f34-4b2e-a698-141cb0f6c3e1.png)
+<img src="https://user-images.githubusercontent.com/93471400/175359585-caad3f6b-5f34-4b2e-a698-141cb0f6c3e1.png" height="200">
 
 ### Kommentar (zu Gesetz)/Legal Commentary
 #### Type in machine language: `legal_commentary`
@@ -34,7 +34,7 @@ Kurztitel|Short Title||EO
 #### Remark for using
 You can insert a page or "Randziffer" when adding a citation in Word. This will be shown after a comma at the end.
 #### Result
-![image](https://user-images.githubusercontent.com/93471400/175361371-1b216cfe-5c5f-49bc-b201-2af81c324725.png)
+<img src="https://user-images.githubusercontent.com/93471400/175361371-1b216cfe-5c5f-49bc-b201-2af81c324725.png" height="200">
 
 ### Ganzes Buch/Whole Book
 #### Type in machine language: `book`
@@ -50,7 +50,7 @@ Ausgabe|Edition||6
 Seiten | Pages ||
 Kurztitel|Short Title||
 #### Result
-![image](https://user-images.githubusercontent.com/93471400/175806787-e2ea4510-16d8-4067-98a1-a37ee48d9319.png)
+<img src="https://user-images.githubusercontent.com/93471400/175806787-e2ea4510-16d8-4067-98a1-a37ee48d9319.png" height="200">
 
 ### Festschrift/Gedenkschrift
 #### Type in machine language: `chapter`
@@ -67,7 +67,7 @@ Seiten | Pages |:white_check_mark:|20
 #### Remark for using
 If it is a "Gedenkschrift" instead of FS... you type GedS ...
 #### Result
-![image](https://user-images.githubusercontent.com/93471400/175367093-09369f5b-af33-4193-ac94-cdbd67b1e373.png)
+<img src="https://user-images.githubusercontent.com/93471400/175367093-09369f5b-af33-4193-ac94-cdbd67b1e373.png" height="200">
 
 ### Tagungsbände und Buchkapitel
 #### Type in machine language: `chapter`
@@ -85,7 +85,7 @@ Seiten | Pages |:white_check_mark:|1
 #### Remark for using
 Editor is absolutely required as this is the differenciator between FS/GedS and Tagungsbände
 #### Result
-![image](https://user-images.githubusercontent.com/93471400/175368123-e897f1f2-4531-43ac-9ba9-b712f1a4f0f8.png)
+<img src="https://user-images.githubusercontent.com/93471400/175368123-e897f1f2-4531-43ac-9ba9-b712f1a4f0f8.png" height="200">
 
 
 ### Gesetz (Österreich)/Law (Austria)
@@ -108,8 +108,8 @@ Geschichte|History|:white_check_mark:|BGBl I 2020/148
 #### Remark for using
 If you add a page (ie paragraph) either in Juris-M or in Word (permanent or individual page), "idF" will be shown in front of BGBl, because I'm assuming, that you want to cite the current and not the original version of the paragraph.
 #### Results
-![image](https://user-images.githubusercontent.com/93471400/175363700-3024fba3-f0fc-4a2f-a476-21f573e43639.png)
-![image](https://user-images.githubusercontent.com/93471400/175363798-883db8cc-d798-46ba-b264-7ffd4ade6d85.png)
+<img src="https://user-images.githubusercontent.com/93471400/175363700-3024fba3-f0fc-4a2f-a476-21f573e43639.png" height="200">
+<img src="https://user-images.githubusercontent.com/93471400/175363798-883db8cc-d798-46ba-b264-7ffd4ade6d85.png" height="200">
 
 ### Richtlinie/Verordnung (Europa)/European Regulation
 #### Type in machine language: `statute`
@@ -122,7 +122,7 @@ Kurztitel|Short Title||AZ-RL 2003/88
 Geschichte|History|:white_check_mark:|ABl L 2003/299, 9
 Jurisdiktion|Jurisdiction|:white_check_mark:|European Union-EU.INT
 #### Results
-![image](https://user-images.githubusercontent.com/93471400/175364893-d3473828-a5f2-4287-9c1d-1ec5fe3f5737.png)
+<img src="https://user-images.githubusercontent.com/93471400/175364893-d3473828-a5f2-4287-9c1d-1ec5fe3f5737.png" height="200">
 
 ### Österreichische Entscheidungen
 #### Type in machine language: `legal_case`
@@ -145,9 +145,9 @@ German | English | Required? | Example
 Jurisdiktion|Jurisdiction|:white_check_mark:|Austria-AT
 #### Results
 ##### Ohne Fundstelle 
-![image](https://user-images.githubusercontent.com/93471400/175369968-e093976d-11dd-4dc3-b0bf-2487d220afff.png)
+<img src="https://user-images.githubusercontent.com/93471400/175369968-e093976d-11dd-4dc3-b0bf-2487d220afff.png" height="200">
 ##### Mit Fundstelle
-![image](https://user-images.githubusercontent.com/93471400/175370930-6a6baf23-409a-42bb-9aea-013d42425f8e.png)
+<img src="https://user-images.githubusercontent.com/93471400/175370930-6a6baf23-409a-42bb-9aea-013d42425f8e.png" height="200">
 
 ### EuGH Entscheidungen
 #### Type in machine language: `legal_case`
@@ -162,7 +162,7 @@ Jurisdiktion|Jurisdiction|:white_check_mark:|European Union-EU.INT
 ?|Document Name||Mustertitel der erfundenen Entscheidung
 ?|Issue|:white_check_mark:|ECLI:EU:C:2005:446
 #### Result
-![image](https://user-images.githubusercontent.com/93471400/175372594-88eadc07-17b9-4342-bad8-4842cd7625e0.png)
+<img src="https://user-images.githubusercontent.com/93471400/175372594-88eadc07-17b9-4342-bad8-4842cd7625e0.png" height="200">
 ### EGMR Entscheidungen
 #### Type in machine language: `legal_case`
 #### Type in natural language: Case
@@ -176,7 +176,7 @@ German | English | Required? | Example
 Jurisdiktion|Jurisdiction|:white_check_mark:|Council of Europe-COE.INT
 ?|Document Name||Jancikova/Österreich
 #### Result
-![image](https://user-images.githubusercontent.com/93471400/175373399-c8afb488-1aa0-4180-b2d2-1f4acc99f1c3.png)
+<img src="https://user-images.githubusercontent.com/93471400/175373399-c8afb488-1aa0-4180-b2d2-1f4acc99f1c3.png" height="200">
 
 ### Webseite
 #### Type in machine language: `webpage` or `post-weblog`
@@ -193,5 +193,5 @@ German | English | Required? | Example
 #### Remark for using
 Choose either Date (Stand: 22.03.2022) *OR* Accessed (Abgerufen am: 26.06.2022). If you enter both, Date will be used.
 #### Result
-![image](https://user-images.githubusercontent.com/93471400/175807679-cbf76825-04f6-47b1-89c7-594ce9968898.png)
+<img src="https://user-images.githubusercontent.com/93471400/175807679-cbf76825-04f6-47b1-89c7-594ce9968898.png" height="200">
 
