@@ -146,6 +146,7 @@ Jurisdiktion|Jurisdiction|:white_check_mark:|Austria-AT
 #### Results
 ##### Ohne Fundstelle 
 <img src="https://user-images.githubusercontent.com/93471400/175369968-e093976d-11dd-4dc3-b0bf-2487d220afff.png" height="200">
+
 ##### Mit Fundstelle
 <img src="https://user-images.githubusercontent.com/93471400/175370930-6a6baf23-409a-42bb-9aea-013d42425f8e.png" height="200">
 
@@ -163,6 +164,7 @@ Jurisdiktion|Jurisdiction|:white_check_mark:|European Union-EU.INT
 ?|Issue|:white_check_mark:|ECLI:EU:C:2005:446
 #### Result
 <img src="https://user-images.githubusercontent.com/93471400/175372594-88eadc07-17b9-4342-bad8-4842cd7625e0.png" height="200">
+
 ### EGMR Entscheidungen
 #### Type in machine language: `legal_case`
 #### Type in natural language: Case
