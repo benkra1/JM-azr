@@ -177,3 +177,21 @@ Jurisdiktion|Jurisdiction|:white_check_mark:|Council of Europe-COE.INT
 ?|Document Name||Jancikova/Österreich
 #### Result
 ![image](https://user-images.githubusercontent.com/93471400/175373399-c8afb488-1aa0-4180-b2d2-1f4acc99f1c3.png)
+
+### Webseite
+#### Type in machine language: `webpage` or `post-weblog`
+#### Type in natural language: Blog Post
+#### Fields for citation 
+German | English | Required? | Example
+---|---|---|---
+? | Title| :white_check_mark:|Überwachen, Blocken, Delisten - Zur Reichweite der EU-Sanktionen gegen RT und Sputnik
+?|Author|:white_check_mark:|Lehofer
+?|URL|:white_check_mark:|https://blog.lehofer.at/2022/03/uberwachen-blocken-delisten.html
+?|Locator (=Page added in Word)||
+?|Date|:white_check_mark:|22.03.2022
+?|Accessed|:white_check_mark:|26.06.2022
+#### Remark for using
+Choose either Date (Stand: 22.03.2022) *OR* Accessed (Abgerufen am: 26.06.2022). If you enter both, Date will be used.
+#### Result
+![image](https://user-images.githubusercontent.com/93471400/175807679-cbf76825-04f6-47b1-89c7-594ce9968898.png)
+
