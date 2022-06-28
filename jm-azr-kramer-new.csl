@@ -49,6 +49,10 @@
 				<single>Rz</single>
 				<multiple>Rz</multiple>
 			</term>
+			<term name="Oberster Gerichtshof" form="short">
+				<single>OGH</single>
+				<multiple>OGH</multiple>
+			</term>
 		</terms>
 	</locale>
 	<macro name="title">
@@ -67,7 +71,7 @@
 	</macro>
 	<macro name="authors">
 		<names variable="author" font-style="italic">
-			<name name-as-sort-order="all"/>
+			<name name-as-sort-order="all" delimiter="/"/>
 			<et-al term="et-al" font-style="italic"/>
 			<substitute>
 				<names variable="editor" font-style="italic"/>
@@ -111,31 +115,18 @@
 				<text variable="container-title" suffix=" "/>
 			</else>
 		</choose>
+		<text variable="volume"/>
 		<choose>
-			<if variable="volume">
-				<text variable="volume"/>
-			</if>
-			<else>
-				<text variable="issue"/>
-			</else>
+		<if variable="page-first">
+		<text variable="page-first" prefix=", "/>
+		</if>
+		<else-if variable="issue">
+		<text variable="issue" prefix="/"/>
+		</else-if>
 		</choose>
-		<choose>
-			<!-- Wenn keine Seite angegeben ist, wird die Nummer des Beitrags verwendet. -->
-			<if variable="page-first">
-				<choose>
-					<if variable="locator">
-						<text variable="page-first" prefix=", "/>
-						<text variable="locator" prefix=" (" suffix=")"/>
-					</if>
-					<else>
-						<text variable="page-first" prefix=", "/>
-					</else>
-				</choose>
-			</if>
-			<else-if variable="issue">
-				<text variable="issue" prefix="/"/>
-			</else-if>
-		</choose>
+		<text variable="locator" prefix=" (" suffix=")"/>
+					
+			
 	</macro>
 	<!--BÜCHER UND KOMMENTARE (SELBSTÄNDIGE WERKE Rz 77 ff)-->
 	<macro name="legal_commentary">
@@ -145,27 +136,26 @@
 				<text macro="editors" prefix=" in "/>
 			</if>
 		</choose>
-		<text macro="title" prefix=", "/>
+		
 		<choose>
-			<if variable="edition">
+			<if position="first" context="bibliography" match="any">
+				<text macro="title" prefix=", "/>
 				<text macro="edition"/>
-			</if>
-		</choose>
-		<choose>
-			<if variable="issued">
-				<choose>
-					<if position="first" context="bibliography" match="any">
-						<text macro="issued"/>
-					</if>
-					<else>
-					  <text term="," />
-					</else>
-				</choose>
+				<text macro="issued"/>
 			</if>
 			<else>
-					  <text term="," />
-					</else>
+				<choose>
+					<if variable="edition">
+						<text macro="title" prefix=", "/>
+						<text macro="edition"/>
+				</if>
+					<else>
+						<text macro="title" prefix=", " suffix=","/>
+				</else>
+				</choose>
+			</else>
 		</choose>
+		
 		<choose>
 			<if variable="page-first">
 				<text variable="page-first" prefix=" "/>
@@ -224,7 +214,8 @@
 		</choose>
 		<choose>
 			<if variable="editor">
-				<text macro="editors" suffix=" (Hrsg), " prefix=" in "/>
+			<!--AZR würde hier suffix=" (Hrsg), " verlangen. Ich finde das nicht passend.-->
+				<text macro="editors" suffix=", " prefix=" in "/>
 			</if>
 		</choose>
 		<choose>
