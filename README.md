@@ -11,10 +11,12 @@ Titel | Title | :white_check_mark:|Neues IT-Recht
 ? | Publication | :white_check_mark:|ecolex
 Autor | Author | :white_check_mark:|Knaipp
 Autor | Author | |Zankl
-? | Issue |:white_check_mark:|2021
+?| Volume | :white_check_mark:|2021
+? | Issue | |50
 Seiten | Pages |:white_check_mark:|106
 #### Remark for using
-You can insert a page when adding a citation in Word. This page will be shown in brackets at the end. Adding a first name does not make a difference in displaying the citation.
+- You can insert a page when adding a citation in Word. This page will be shown in brackets at the end. Adding a first name does not make a difference in displaying the citation.
+- If you don't add a page in the "Pages" field, the value in the "Issue" field will be shown after a dash. (eg. 2021/50)
 #### Result
 <img src="https://user-images.githubusercontent.com/93471400/175359585-caad3f6b-5f34-4b2e-a698-141cb0f6c3e1.png" height="200">
 
