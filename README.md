@@ -199,3 +199,18 @@ Choose either Date (Stand: 22.03.2022) *OR* Accessed (Abgerufen am: 26.06.2022).
 #### Result
 <img src="https://user-images.githubusercontent.com/93471400/175807679-cbf76825-04f6-47b1-89c7-594ce9968898.png" height="200">
 
+### Alles andere (zB Materialien [Rz 38 f])
+#### Type in machine language: `document` (or any other type which is not described above)
+#### Type in natural language: Document
+#### Fields for citation 
+German | English | Required? | Example
+---|---|---|---
+? | Title| not used in citation or bibliography, just for clarity in Juris-M|Regierungsvorlage HiNBG
+?|Author| |Lehofer
+?|Abstract|:white_check_mark:|ErläutRV 481 BlgNR 27. GP
+#### Remark for using
+- The text in Abstract is used 1:1 in the citation and bibliography, therefore this field is very flexible. However, some knowledge about citing is required.
+- If a page is entered in Word, it will be displayed directly after the citation.
+- Author is treated sepeartely and will be shown at the beginning, because it must be rendered in italics.
+#### Result
+<img src="https://user-images.githubusercontent.com/93471400/176682288-b21df8b7-7e27-4a48-8480-c4a5906d0036.png" height="200">
