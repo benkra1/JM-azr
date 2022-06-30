@@ -206,7 +206,7 @@ Choose either Date (Stand: 22.03.2022) *OR* Accessed (Abgerufen am: 26.06.2022).
 German | English | Required? | Example
 ---|---|---|---
 ? | Title| not used in citation or bibliography, just for clarity in Juris-M|Regierungsvorlage HiNBG
-?|Author| |Lehofer
+?|Author| | 
 ?|Abstract|:white_check_mark:|ErläutRV 481 BlgNR 27. GP
 #### Remark for using
 - The text in Abstract is used 1:1 in the citation and bibliography, therefore this field is very flexible. However, some knowledge about citing is required.
