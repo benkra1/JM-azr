@@ -1,5 +1,82 @@
 # JM-azr
 This is a CSL style for Juris-M, which is in conformity to AZR (Austrian Legal Citation Style)
+## Table of contents
+- [JM-azr](#jm-azr)
+  * [Configured types](#configured-types)
+    + [Zeitschriften/Journal Articles](#zeitschriften-journal-articles)
+      - [Type in machine language: `article-journal`](#type-in-machine-language---article-journal-)
+      - [Type in natural language: Journal Article/???](#type-in-natural-language--journal-article----)
+      - [Fields](#fields)
+      - [Remark for using](#remark-for-using)
+      - [Result](#result)
+    + [Kommentar (zu Gesetz)/Legal Commentary](#kommentar--zu-gesetz--legal-commentary)
+      - [Type in machine language: `legal_commentary`](#type-in-machine-language---legal-commentary-)
+      - [Type in natural language: Legal Commentary/Gesetzeskommentar](#type-in-natural-language--legal-commentary-gesetzeskommentar)
+      - [Fields](#fields-1)
+      - [Remark for using](#remark-for-using-1)
+      - [Result](#result-1)
+    + [Ganzes Buch/Whole Book](#ganzes-buch-whole-book)
+      - [Type in machine language: `book`](#type-in-machine-language---book-)
+      - [Type in natural language: Buch/Book](#type-in-natural-language--buch-book)
+      - [Fields](#fields-2)
+      - [Result](#result-2)
+    + [Festschrift/Gedenkschrift](#festschrift-gedenkschrift)
+      - [Type in machine language: `chapter`](#type-in-machine-language---chapter-)
+      - [Type in natural language: Book Section](#type-in-natural-language--book-section)
+      - [Fields](#fields-3)
+      - [Remark for using](#remark-for-using-2)
+      - [Result](#result-3)
+    + [Tagungsbände und Buchkapitel](#tagungsb-nde-und-buchkapitel)
+      - [Type in machine language: `chapter`](#type-in-machine-language---chapter--1)
+      - [Type in natural language: Book Section](#type-in-natural-language--book-section-1)
+      - [Fields](#fields-4)
+      - [Remark for using](#remark-for-using-3)
+      - [Result](#result-4)
+    + [Gesetz (Österreich)/Law (Austria)](#gesetz---sterreich--law--austria-)
+      - [Type in machine language: `statute`](#type-in-machine-language---statute-)
+      - [Type in natural language: Gesetz/Statute](#type-in-natural-language--gesetz-statute)
+      - [Fields for citation of single paragraph](#fields-for-citation-of-single-paragraph)
+      - [Fields for citation of whole legislative act](#fields-for-citation-of-whole-legislative-act)
+      - [Remark for using](#remark-for-using-4)
+      - [Results](#results)
+    + [Richtlinie/Verordnung (Europa)/European Regulation](#richtlinie-verordnung--europa--european-regulation)
+      - [Type in machine language: `statute`](#type-in-machine-language---statute--1)
+      - [Type in natural language: Gesetz/Statute](#type-in-natural-language--gesetz-statute-1)
+      - [Fields for citation](#fields-for-citation)
+      - [Results](#results-1)
+    + [Österreichische Entscheidungen](#-sterreichische-entscheidungen)
+      - [Type in machine language: `legal_case`](#type-in-machine-language---legal-case-)
+      - [Type in natural language: Case](#type-in-natural-language--case)
+      - [Fields for citation (ohne Fundstelle)](#fields-for-citation--ohne-fundstelle-)
+      - [Fields for citation (ohne Fundstelle)](#fields-for-citation--ohne-fundstelle--1)
+      - [Results](#results-2)
+        * [Ohne Fundstelle](#ohne-fundstelle)
+        * [Mit Fundstelle](#mit-fundstelle)
+    + [EuGH Entscheidungen](#eugh-entscheidungen)
+      - [Type in machine language: `legal_case`](#type-in-machine-language---legal-case--1)
+      - [Type in natural language: Case](#type-in-natural-language--case-1)
+      - [Fields for citation](#fields-for-citation-1)
+      - [Result](#result-5)
+    + [EGMR Entscheidungen](#egmr-entscheidungen)
+      - [Type in machine language: `legal_case`](#type-in-machine-language---legal-case--2)
+      - [Type in natural language: Case](#type-in-natural-language--case-2)
+      - [Fields for citation](#fields-for-citation-2)
+      - [Result](#result-6)
+    + [Webseite](#webseite)
+      - [Type in machine language: `webpage` or `post-weblog`](#type-in-machine-language---webpage--or--post-weblog-)
+      - [Type in natural language: Blog Post](#type-in-natural-language--blog-post)
+      - [Fields for citation](#fields-for-citation-3)
+      - [Remark for using](#remark-for-using-5)
+      - [Result](#result-7)
+    + [Alles andere (zB Materialien [Rz 38 f])](#alles-andere--zb-materialien--rz-38-f--)
+      - [Type in machine language: `document` (or any other type which is not described above)](#type-in-machine-language---document---or-any-other-type-which-is-not-described-above-)
+      - [Type in natural language: Document](#type-in-natural-language--document)
+      - [Fields for citation](#fields-for-citation-4)
+      - [Remark for using](#remark-for-using-6)
+      - [Result](#result-8)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 ## Configured types
 ### Zeitschriften/Journal Articles
 #### Type in machine language: `article-journal`
@@ -206,7 +283,7 @@ Choose either Date (Stand: 22.03.2022) *OR* Accessed (Abgerufen am: 26.06.2022).
 German | English | Required? | Example
 ---|---|---|---
 ? | Title| not used in citation or bibliography, just for clarity in Juris-M|Regierungsvorlage HiNBG
-?|Author| |Lehofer
+?|Author| | 
 ?|Abstract|:white_check_mark:|ErläutRV 481 BlgNR 27. GP
 #### Remark for using
 - The text in Abstract is used 1:1 in the citation and bibliography, therefore this field is very flexible. However, some knowledge about citing is required.
