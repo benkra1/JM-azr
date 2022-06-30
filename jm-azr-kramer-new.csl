@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <style xmlns="http://purl.org/net/xbiblio/csl" version="1.1mlz1" class="note" default-locale="de-AT" name-delimiter="/" name-form="short" delimiter-precedes-et-al="never" delimiter-precedes-last="always" initialize-with="." initialize="true">
 	<info>
-		<title>JM AZR (Erstzitat lang mit Verzeichnissen)</title>
+		<title>Juris-M AZR (Erstzitat lang mit Verzeichnissen)</title>
 		<title-short>JM AZR (Langzitat)</title-short>
 		<id>https://github.com/benkra1/JM-azr</id>
 		<link href="https://github.com/benkra1/JM-azr" rel="self"/>
 		<link href="https://www.manz.at/unternehmen/autorenservice/azr" rel="documentation"/>
-		<link href="https://learn.wu.ac.at/open/fit4research/azr" rel="documentation"/>
+		<link href="https://github.com/benkra1/JM-azr#readme" rel="documentation"/>
 		<author>
 			<name>Benedikt Kramer, LL.B.</name>
-			<email>benedikt.kramer@outlook.com</email>
+			<email>benedikt.kramer@s.wu.ac.at</email>
 		</author>
 		<category citation-format="note"/>
 		<category field="law"/>
 		<summary>AZR 8.</summary>
-		<updated>2022-06-25T16:07:43+02:00</updated>
+		<updated>2022-06-30T16:07:43+02:00</updated>
 		<rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
 	</info>
 	<locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="de">
@@ -438,7 +438,46 @@
 	<text variable="locator"/>
 	</group>
 	</macro>
-	
+
+	<!-- FUßNOTEN-->
+	<citation et-al-min="4" et-al-use-first="1" disambiguate-add-names="true" givenname-disambiguation-rule="all-names-with-initials" disambiguate-add-givenname="true">
+		<layout suffix="." delimiter="; ">
+			<choose>
+				<!--ZEITSCHRIFTEN-->
+				<if type="article-journal">
+					<text macro="article-journal"/>
+				</if>
+				<!--BÜCHER UND KOMMENTARE (SELBSTÄNDIGE WERKE Rz 77 ff)-->
+				<else-if type="legal_commentary">
+					<text macro="legal_commentary"/>
+				</else-if>
+				<else-if type="book">
+					<text macro="book"/>
+				</else-if>
+				<!-- FESTSCHRIFTEN und GEDÄCHTNISSCHRIFTEN; wenn Hrsg fehlt, dann TAGUNGSBÄNDE -->
+				<else-if type="chapter">
+					<text macro="chapter"/>
+				</else-if>
+				<!--ÖSTERREICHISCHE GESETZE-->
+				<!--EU VERORDNUNGEN/RICHTLINIEN-->
+				<else-if type="bill legislation statute" match="any">
+					<text macro="law"/>
+				</else-if>
+				<!--ENTSCHEIDUNGEN-->
+				<else-if type="legal_case">
+					<text macro="cases"/>
+				</else-if>
+				<else-if type="webpage post-weblog" match="any">
+					<text macro="web"/>
+				</else-if>
+				<else>
+					<text macro="document"/>
+				</else>
+			</choose>
+		</layout>
+	</citation>
+	<!-- LITERATURVERZEICHNIS -->
+		
 	<!-- sort macros -->
 	<macro name="type-sort">
 		<choose>
@@ -543,44 +582,6 @@
 			</else-if>
 		</choose>
 	</macro>
-	<!-- FUßNOTEN-->
-	<citation et-al-min="4" et-al-use-first="1" disambiguate-add-names="true" givenname-disambiguation-rule="all-names-with-initials" disambiguate-add-givenname="true">
-		<layout suffix="." delimiter="; ">
-			<choose>
-				<!--ZEITSCHRIFTEN-->
-				<if type="article-journal">
-					<text macro="article-journal"/>
-				</if>
-				<!--BÜCHER UND KOMMENTARE (SELBSTÄNDIGE WERKE Rz 77 ff)-->
-				<else-if type="legal_commentary">
-					<text macro="legal_commentary"/>
-				</else-if>
-				<else-if type="book">
-					<text macro="book"/>
-				</else-if>
-				<!-- FESTSCHRIFTEN und GEDÄCHTNISSCHRIFTEN; wenn Hrsg fehlt, dann TAGUNGSBÄNDE -->
-				<else-if type="chapter">
-					<text macro="chapter"/>
-				</else-if>
-				<!--ÖSTERREICHISCHE GESETZE-->
-				<!--EU VERORDNUNGEN/RICHTLINIEN-->
-				<else-if type="bill legislation statute" match="any">
-					<text macro="law"/>
-				</else-if>
-				<!--ENTSCHEIDUNGEN-->
-				<else-if type="legal_case">
-					<text macro="cases"/>
-				</else-if>
-				<else-if type="webpage post-weblog" match="any">
-					<text macro="web"/>
-				</else-if>
-				<else>
-					<text macro="document"/>
-				</else>
-			</choose>
-		</layout>
-	</citation>
-	<!-- LITERATURVERZEICHNIS -->
 	<bibliography>
 		<sort>
 			<key macro="type-sort"/>
