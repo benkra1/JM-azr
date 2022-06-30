@@ -430,8 +430,15 @@
 			</else>
 		</choose>
 	</macro>
-	<!--MATERIALIEN-->
-	<!--BUCHBESPRECHUNG-->
+	<!--REST (MATERIALIEN, etc)-->
+	<macro name="document">
+	<group delimiter=" ">
+	<text macro="author"/>
+	<text variable="abstract"/>
+	<text variable="locator"/>
+	</group>
+	</macro>
+	
 	<!-- sort macros -->
 	<macro name="type-sort">
 		<choose>
@@ -568,13 +575,7 @@
 					<text macro="web"/>
 				</else-if>
 				<else>
-					<group delimiter=", ">
-						<text macro="authors" font-style="italic"/>
-						<text variable="title"/>
-						<text variable="container-title"/>
-						<date form="numeric" variable="issued"/>
-						<text variable="locator" prefix="(" suffix=")"/>
-					</group>
+					<text macro="document"/>
 				</else>
 			</choose>
 		</layout>
@@ -617,6 +618,9 @@
 				<else-if type="webpage post-weblog" match="any">
 					<text macro="web"/>
 				</else-if>
+				<else>
+					<text macro="document"/>
+				</else>
 			</choose>
 		</layout>
 	</bibliography>
