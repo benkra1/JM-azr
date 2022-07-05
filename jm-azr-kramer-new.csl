@@ -90,8 +90,8 @@
 		<text variable="edition" vertical-align="sup"/>
 	</macro>
 	<macro name="issued">
-		<date variable="issued" prefix=" (" suffix=")">
-			<date-part name="year" form="long"/>
+		<date variable="issued" >
+			<date-part name="year" form="long" prefix=" (" suffix=")"/>
 		</date>
 	</macro>
 	<!--Zitierte Werke-->
@@ -117,16 +117,14 @@
 		</choose>
 		<text variable="volume"/>
 		<choose>
-		<if variable="page-first">
-		<text variable="page-first" prefix=", "/>
-		</if>
-		<else-if variable="issue">
-		<text variable="issue" prefix="/"/>
-		</else-if>
+			<if variable="page-first">
+				<text variable="page-first" prefix=", "/>
+			</if>
+			<else-if variable="issue">
+				<text variable="issue" prefix="/"/>
+			</else-if>
 		</choose>
 		<text variable="locator" prefix=" (" suffix=")"/>
-					
-			
 	</macro>
 	<!--BÜCHER UND KOMMENTARE (SELBSTÄNDIGE WERKE Rz 77 ff)-->
 	<macro name="legal_commentary">
@@ -136,7 +134,6 @@
 				<text macro="editors" prefix=" in "/>
 			</if>
 		</choose>
-		
 		<choose>
 			<if position="first" context="bibliography" match="any">
 				<text macro="title" prefix=", "/>
@@ -148,14 +145,13 @@
 					<if variable="edition">
 						<text macro="title" prefix=", "/>
 						<text macro="edition"/>
-				</if>
+					</if>
 					<else>
 						<text macro="title" prefix=", " suffix=","/>
-				</else>
+					</else>
 				</choose>
 			</else>
 		</choose>
-		
 		<choose>
 			<if variable="page-first">
 				<text variable="page-first" prefix=" "/>
@@ -214,7 +210,7 @@
 		</choose>
 		<choose>
 			<if variable="editor">
-			<!--AZR würde hier suffix=" (Hrsg), " verlangen. Ich finde das nicht passend.-->
+				<!--AZR würde hier suffix=" (Hrsg), " verlangen. Ich finde das nicht passend.-->
 				<text macro="editors" suffix=", " prefix=" in "/>
 			</if>
 		</choose>
@@ -432,13 +428,12 @@
 	</macro>
 	<!--REST (MATERIALIEN, etc)-->
 	<macro name="document">
-	<group delimiter=" ">
-	<text macro="author"/>
-	<text variable="abstract"/>
-	<text variable="locator"/>
-	</group>
+		<group delimiter=" ">
+			<text macro="author"/>
+			<text variable="abstract"/>
+			<text variable="locator"/>
+		</group>
 	</macro>
-
 	<!-- FUßNOTEN-->
 	<citation et-al-min="4" et-al-use-first="1" disambiguate-add-names="true" givenname-disambiguation-rule="all-names-with-initials" disambiguate-add-givenname="true">
 		<layout suffix="." delimiter="; ">
@@ -477,118 +472,34 @@
 		</layout>
 	</citation>
 	<!-- LITERATURVERZEICHNIS -->
-		
 	<!-- sort macros -->
 	<macro name="type-sort">
 		<choose>
 			<if type="legal_case regulation" match="any">
 				<text value="1"/>
 			</if>
-			<else-if type="legislation bill" match="any">
+			<else-if type="legislation bill statute" match="any">
 				<text value="2"/>
 			</else-if>
-			<else-if type="webpage post-weblog post">
+			<else-if type="article-journal" match="any">
+				<text value="3"/>
+			</else-if>
+			<else-if type="legal_commentary chapter" match="any">
 				<text value="4"/>
 			</else-if>
+			<else-if type="webpage post-weblog post" match="any">
+				<text value="15"/>
+			</else-if>
 			<else>
-				<text value="3"/>
+				<text value="20"/>
 			</else>
 		</choose>
 	</macro>
-	<macro name="sort-jurisdiction">
-		<choose>
-			<if country="eu.int">
-				<text value="10"/>
-			</if>
-			<else-if country="coe.int">
-				<text value="11"/>
-			</else-if>
-			<else-if country="un.int">
-				<text value="12"/>
-			</else-if>
-			<else-if country="at">
-				<text value="20"/>
-			</else-if>
-			<else>
-				<text value="50"/>
-			</else>
-		</choose>
-		<text value="country"/>
-	</macro>
-	<macro name="sort-courts">
-		<choose>
-			<if country="at">
-				<choose>
-					<if court-class="o1 v1 v0" match="any">
-						<text value="10"/>
-					</if>
-					<else-if court-class="o2">
-						<text value="20"/>
-					</else-if>
-					<else-if court-class="o3 v2" match="any">
-						<text value="30"/>
-					</else-if>
-					<else>
-						<text value="40"/>
-					</else>
-				</choose>
-			</if>
-		</choose>
-	</macro>
-	<macro name="type-sort-legal">
-		<choose>
-			<if type="legal_case">
-				<text value="1"/>
-				<choose>
-					<if country="at">
-						<choose>
-							<if court-class="o1">
-								<text value="1"/>
-							</if>
-							<else-if court-class="o2">
-								<text value="2"/>
-							</else-if>
-							<else-if court-class="o3">
-								<text value="2"/>
-							</else-if>
-							<else-if court-class="o4">
-								<text value="2"/>
-							</else-if>
-							<else-if court-class="v0">
-								<text value="3"/>
-							</else-if>
-							<else-if court-class="v1">
-								<text value="4"/>
-							</else-if>
-							<else-if court-class="v2">
-								<text value="5"/>
-							</else-if>
-							<else-if court-class="v3">
-								<text value="6"/>
-							</else-if>
-							<else>
-								<text value="7"/>
-							</else>
-						</choose>
-					</if>
-				</choose>
-				<text variable="jurisdiction"/>
-			</if>
-			<else-if type="legislation">
-				<text value="10"/>
-			</else-if>
-			<else-if type="regulation bill" match="any">
-				<text value="20"/>
-			</else-if>
-		</choose>
-	</macro>
+
 	<bibliography>
 		<sort>
 			<key macro="type-sort"/>
-			<key macro="sort-jurisdiction"/>
-			<key macro="type-sort-legal"/>
-			<key macro="author-short"/>
-			<key variable="issued" sort="descending"/>
+			<key variable="author"/>
 		</sort>
 		<layout>
 			<choose>
