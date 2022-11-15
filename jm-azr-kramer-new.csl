@@ -140,6 +140,7 @@
 			</if>
 			<else-if context="bibliography">
 				<!--Literaturverzeichnis-->
+				<text value="KOMMENTAR" suffix=" "/>
 				<text macro="editors"/>
 				<text macro="title" prefix=", "/>
 				<text macro="edition"/>
