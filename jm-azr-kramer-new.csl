@@ -140,7 +140,6 @@
 			</if>
 			<else-if context="bibliography">
 				<!--Literaturverzeichnis-->
-				<text value="KOMMENTAR" suffix=" "/>
 				<text macro="editors"/>
 				<text macro="title" prefix=", "/>
 				<text macro="edition"/>
@@ -282,20 +281,12 @@
 							<condition position="first"/>
 							<condition context="bibliography"/>
 						</conditions>
-						<choose>
-							<if variable="locator">
-								<text variable="locator" prefix=" " suffix=" "/>
-							</if>
-						</choose>
+						<text variable="locator" prefix=" " suffix=" "/>
 						<text variable="title" suffix=", "/>
 						<text variable="references"/>
 					</if>
 					<else>
-						<choose>
-							<if variable="locator">
-								<text variable="locator" suffix=" "/>
-							</if>
-						</choose>
+						<text variable="locator" suffix=" "/>
 						<text variable="title" form="short"/>
 						<text variable="references" prefix=" "/>
 					</else>
@@ -411,7 +402,7 @@
 		</group>
 	</macro>
 	<!-- FUßNOTEN-->
-	<citation et-al-min="4" et-al-use-first="1" disambiguate-add-names="true" givenname-disambiguation-rule="all-names-with-initials" disambiguate-add-givenname="true">
+	<citation et-al-min="10" et-al-use-first="1" disambiguate-add-names="true" givenname-disambiguation-rule="all-names-with-initials" disambiguate-add-givenname="true">
 		<layout suffix="." delimiter="; ">
 			<choose>
 				<!--ZEITSCHRIFTEN-->
@@ -455,13 +446,19 @@
 				<text value="1"/>
 			</if>
 			<else-if type="legislation bill statute" match="any">
-				<text value="2"/>
+				<text value="10"/>
 			</else-if>
 			<else-if type="article-journal" match="any">
 				<text value="3"/>
 			</else-if>
-			<else-if type="legal_commentary chapter" match="any">
+			<else-if type="legal_commentary">
 				<text value="4"/>
+			</else-if>
+			<else-if type="chapter">
+				<text value="5"/>
+			</else-if>
+			<else-if type="book">
+				<text value="6"/>
 			</else-if>
 			<else-if type="webpage post-weblog post" match="any">
 				<text value="15"/>
@@ -484,6 +481,7 @@
 				</if>
 				<!--BÜCHER UND KOMMENTARE (SELBSTÄNDIGE WERKE Rz 77 ff)-->
 				<else-if type="legal_commentary">
+					<text value="KOMMENTAR" suffix=" "/>
 					<text macro="legal_commentary"/>
 				</else-if>
 				<else-if type="book">
