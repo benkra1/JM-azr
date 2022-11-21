@@ -343,8 +343,8 @@
 					<date-part name="year"/>
 				</date>
 				<text variable="division" prefix="(" suffix=")"/>
-				<text variable="title" prefix=", "/>
-				<text variable="document-name" prefix=", " font-style="italic"/>
+				<text variable="number" prefix=", "/>
+				<text variable="title" prefix=", " font-style="italic"/>
 				<text variable="issue" prefix=", "/>
 				<text variable="locator" prefix=", "/>
 			</if>
@@ -352,16 +352,16 @@
 				<choose>
 					<if variable="issue">
 						<!--EUGH ENTSCHEIDUNGEN mit ECLI-->
-						<text variable="title"/>
-						<text variable="document-name" prefix=", " suffix="," font-style="italic"/>
+						<text variable="number"/>
+						<text variable="title" prefix=", " suffix="," font-style="italic"/>
 						<text variable="issue" prefix=" "/>
 						<text variable="publisher" prefix=" "/>
 						<text variable="locator"/>
 					</if>
 					<else-if variable="publisher">
 						<!--Entscheidungen mit Fundstelle-->
-						<text variable="title"/>
-						<text variable="document-name" prefix=", " suffix="," font-style="italic"/>
+						<text variable="number"/>
+						<text variable="title" prefix=", " suffix="," font-style="italic"/>
 						<text variable="publisher" prefix=" "/>
 					</else-if>
 					<else>
@@ -371,7 +371,7 @@
 							<date-part name="month" form="numeric" suffix=". "/>
 							<date-part name="year"/>
 						</date>
-						<text variable="title"/>
+						<text variable="number"/>
 						<text variable="locator" prefix=", "/>
 					</else>
 				</choose>

@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" version="1.0" class="note" default-locale="de-AT" name-delimiter="/" name-form="short" delimiter-precedes-et-al="never" delimiter-precedes-last="always" initialize-with="." initialize="true">
+	<info>
+		<title>Zotero AZR (Erstzitat lang mit Verzeichnissen)</title>
+		<title-short>ZOT AZR (Langzitat)</title-short>
+		<id>https://github.com/benkra1/JM-azr</id>
+		<link href="https://github.com/benkra1/JM-azr" rel="self"/>
+		<link href="https://www.manz.at/unternehmen/autorenservice/azr" rel="documentation"/>
+		<link href="https://github.com/benkra1/JM-azr#readme" rel="documentation"/>
+		<author>
+			<name>Benedikt Kramer, LL.B.</name>
+			<email>benedikt.kramer@s.wu.ac.at</email>
+		</author>
+		<category citation-format="note"/>
+		<category field="law"/>
+		<summary>AZR 8.</summary>
+		<updated>2022-06-30T16:07:43+02:00</updated>
+		<rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
+	</info>
+	<locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="de">
+		<terms>
+			<term name="et-al">ea</term>
+			<term name="article" form="short">
+				<single>Art</single>
+				<multiple>Art</multiple>
+			</term>
+			<term name="note" form="short">
+				<single>Fn</single>
+				<multiple>Fn</multiple>
+			</term>
+			<term name="number" form="short">
+				<single>Nr</single>
+				<multiple>Nr</multiple>
+			</term>
+			<term name="paragraph" form="short">
+				<single>Abs</single>
+				<multiple>Abs</multiple>
+			</term>
+			<term name="paragraph" form="symbol">
+				<single>Abs</single>
+				<multiple>Abs</multiple>
+			</term>
+		</terms>
+	</locale>
+	<macro name="title">
+		<choose>
+			<if position="subsequent">
+				<text variable="title" form="short"/>
+			</if>
+			<else>
+				<text variable="title"/>
+			</else>
+		</choose>
+	</macro>
+	<macro name="authors">
+		<names variable="author" font-style="italic">
+			<name name-as-sort-order="all" delimiter="/"/>
+			<et-al term="et-al" font-style="italic"/>
+			<substitute>
+				<names variable="editor" font-style="italic"/>
+				<names variable="translator" font-style="italic"/>
+			</substitute>
+		</names>
+	</macro>
+	<macro name="editors">
+		<names variable="editor" font-style="italic">
+			<name name-as-sort-order="all" delimiter="/"/>
+			<et-al term="et-al" font-style="italic"/>
+		</names>
+	</macro>
+	<macro name="edition">
+		<text variable="edition" vertical-align="sup"/>
+	</macro>
+	<macro name="issued">
+		<date variable="issued" form="numeric" prefix=" (" suffix=")" date-parts="year">
+			<date-part name="year" form="long"/>
+		</date>
+	</macro>
+	<!--Zitierte Werke-->
+	<!--ZEITSCHRIFTEN-->
+	<macro name="article-journal">
+		<text macro="authors" suffix=", "/>
+		<choose>
+			<if position="subsequent" match="none">
+				<text macro="title" suffix=", "/>
+			</if>
+		</choose>
+		<choose>
+			<if variable="container-title-short">
+				<text variable="container-title-short" suffix=" "/>
+			</if>
+			<else>
+				<text variable="container-title" suffix=" "/>
+			</else>
+		</choose>
+		<text variable="volume"/>
+		<choose>
+			<if variable="page-first">
+				<text variable="page-first" prefix=", "/>
+			</if>
+			<else-if variable="issue">
+				<text variable="issue" prefix="/"/>
+			</else-if>
+		</choose>
+		<text variable="locator" prefix=" (" suffix=")"/>
+	</macro>
+	<!--BÜCHER UND KOMMENTARE (SELBSTÄNDIGE WERKE Rz 77 ff)-->
+	<macro name="legal_commentary">
+		<choose>
+			<if position="first">
+				<!--Erstzitat-->
+				<text macro="authors"/>
+				<text macro="editors" prefix=" in "/>
+				<text macro="title" prefix=", "/>
+				<text macro="edition"/>
+				<text macro="issued"/>
+				<text variable="page-first" prefix=" "/>
+				<text variable="locator" prefix=" "/>
+			</if>
+			<else-if position="subsequent">
+				<!--Folgezitat-->
+				<text macro="authors"/>
+				<text macro="editors" prefix=" in "/>
+				<choose>
+					<if variable="edition">
+						<text macro="title" prefix=", "/>
+						<text macro="edition"/>
+					</if>
+					<else>
+						<text macro="title" prefix=", " suffix=","/>
+					</else>
+				</choose>
+				<text variable="page-first" prefix=" "/>
+				<text variable="locator" prefix=" "/>
+			</else-if>
+			<else>
+				<!--Literaturverzeichnis-->
+				<text macro="editors"/>
+				<text macro="title" prefix=", "/>
+				<text macro="edition"/>
+				<text macro="issued"/>
+			</else>
+		</choose>
+	</macro>
+	<macro name="book">
+		<text macro="authors"/>
+		<choose>
+			<if variable="editor">
+				<text macro="editors" prefix=" in "/>
+			</if>
+		</choose>
+		<text macro="title" prefix=", "/>
+		<choose>
+			<if variable="edition">
+				<text macro="edition"/>
+			</if>
+		</choose>
+		<choose>
+			<if variable="issued">
+				<choose>
+					<if position="subsequent" match="none">
+						<text macro="issued"/>
+					</if>
+				</choose>
+			</if>
+		</choose>
+		<choose>
+			<if variable="page-first">
+				<text variable="page-first" prefix=" "/>
+			</if>
+		</choose>
+		<choose>
+			<if variable="locator">
+				<text variable="locator" prefix=" "/>
+			</if>
+		</choose>
+	</macro>
+	<!-- FESTSCHRIFTEN und GEDÄCHTNISSCHRIFTEN; wenn Hrsg fehlt, dann TAGUNGSBÄNDE FERTIG-->
+	<macro name="chapter">
+		<text macro="authors"/>
+		<choose>
+			<if position="subsequent" match="none">
+				<text macro="title" prefix=", " suffix=","/>
+			</if>
+		</choose>
+		<choose>
+			<if variable="editor">
+				<!--AZR würde hier suffix=" (Hrsg), " verlangen. Ich finde das nicht passend.-->
+				<text macro="editors" suffix=", " prefix=" in "/>
+			</if>
+		</choose>
+		<choose>
+			<if variable="editor">
+				<choose>
+					<if variable="container-title-short">
+						<text variable="container-title-short"/>
+					</if>
+					<else>
+						<text variable="container-title"/>
+					</else>
+				</choose>
+			</if>
+			<else>
+				<choose>
+					<if variable="container-title-short">
+						<text variable="container-title-short" prefix="in "/>
+					</if>
+					<else>
+						<text variable="container-title" prefix=" in "/>
+					</else>
+				</choose>
+			</else>
+		</choose>
+		<choose>
+			<if variable="edition">
+				<text macro="edition"/>
+			</if>
+		</choose>
+		<choose>
+			<if variable="issued">
+				<choose>
+					<if position="subsequent" match="none">
+						<text macro="issued"/>
+					</if>
+				</choose>
+			</if>
+		</choose>
+		<choose>
+			<if variable="page-first">
+				<choose>
+					<if variable="locator">
+						<text variable="page-first" prefix=" "/>
+						<text variable="locator" prefix=" (" suffix=")"/>
+					</if>
+					<else>
+						<text variable="page-first" prefix=" "/>
+					</else>
+				</choose>
+			</if>
+		</choose>
+	</macro>
+	<!--ÖSTERREICHISCHE GESETZE-->
+	<!--EU VERORDNUNGEN/RICHTLINIEN-->
+	<macro name="law">
+		<choose>
+			<if country="eu.int">
+				<!-- Verordnung oder Richtlinie der Europäischen Union -->
+				<!-- Das Jurisdiction Feld wird verwendet um europäische Normen zu markieren-->
+				<choose>
+					<if position="subsequent" match="none">
+						<text variable="locator" prefix=" " suffix=" "/>
+						<text variable="title" suffix=", "/>
+						<text variable="references"/>
+					</if>
+					<else>
+						<text variable="locator" suffix=" "/>
+						<text variable="title" form="short"/>
+						<text variable="references" prefix=" "/>
+					</else>
+				</choose>
+			</if>
+			<else>
+				<!-- Österreichische Normen -->
+				<choose>
+					<if variable="page locator" match="any">
+						<choose>
+							<if variable="locator">
+								<text variable="locator" suffix=" "/>
+							</if>
+							<else>
+								<text variable="page" suffix=" "/>
+							</else>
+						</choose>
+						<text macro="title"/>
+						<choose>
+							<if position="subsequent" match="none">
+								<text variable="references" prefix=" idF "/>
+							</if>
+						</choose>
+					</if>
+					<else>
+						<text macro="title"/>
+						<choose>
+							<if position="subsequent" match="none">
+								<text variable="references" prefix=" "/>
+							</if>
+						</choose>
+					</else>
+				</choose>
+			</else>
+		</choose>
+	</macro>
+	<!--ENTSCHEIDUNGEN-->
+	<macro name="cases">
+		<text variable="authority" suffix=" "/>
+		<choose>
+			<if country="coe.int">
+				<!--EGMR Entscheidungen-->
+				<date variable="issued" suffix=" ">
+					<date-part name="day" form="numeric" suffix=". "/>
+					<date-part name="month" form="numeric" suffix=". "/>
+					<date-part name="year"/>
+				</date>
+				<text variable="division" prefix="(" suffix=")"/>
+				<text variable="title" prefix=", "/>
+				<text variable="abstract" prefix=", " font-style="italic"/>
+				<text variable="issue" prefix=", "/>
+				<text variable="locator" prefix=", "/>
+			</if>
+			<else>
+				<choose>
+					<if variable="issue">
+						<!--EUGH ENTSCHEIDUNGEN mit ECLI-->
+						<text variable="title"/>
+						<text variable="abstract" prefix=", " suffix="," font-style="italic"/>
+						<text variable="issue" prefix=" "/>
+						<text variable="publisher" prefix=" "/>
+						<text variable="locator"/>
+					</if>
+					<else-if variable="publisher">
+						<!--Entscheidungen mit Fundstelle-->
+						<text variable="title"/>
+						<text variable="abstract" prefix=", " suffix="," font-style="italic"/>
+						<text variable="publisher" prefix=" "/>
+					</else-if>
+					<else>
+						<!--Entscheidungen ohne Fundstelle-->
+						<date variable="issued" suffix=", ">
+							<date-part name="day" suffix=". "/>
+							<date-part name="month" form="numeric" suffix=". "/>
+							<date-part name="year"/>
+						</date>
+						<text variable="title"/>
+						<text variable="locator" prefix=", "/>
+					</else>
+				</choose>
+			</else>
+		</choose>
+	</macro>
+	<!--WEBSEITEN-->
+	<macro name="web">
+		<text macro="authors"/>
+		<text variable="title" prefix=", "/>
+		<text variable="URL" prefix=", "/>
+		<text variable="locator" prefix=" (" suffix="), "/>
+		<choose>
+			<if variable="issued">
+				<date variable="issued" prefix=" (Stand " suffix=")" form="numeric"/>
+			</if>
+			<else>
+				<date variable="accessed" prefix=" (aufgerufen am " suffix=")" form="numeric"/>
+			</else>
+		</choose>
+	</macro>
+	<!--REST (MATERIALIEN, etc)-->
+	<macro name="document">
+		<group delimiter=" ">
+			<text macro="authors"/>
+			<text variable="abstract"/>
+			<text variable="locator"/>
+		</group>
+	</macro>
+	<!-- FUßNOTEN-->
+	<citation et-al-min="10" et-al-use-first="1" disambiguate-add-names="true" givenname-disambiguation-rule="all-names-with-initials" disambiguate-add-givenname="true">
+		<layout suffix="." delimiter="; ">
+			<choose>
+				<!--ZEITSCHRIFTEN-->
+				<if type="article-journal">
+					<text macro="article-journal"/>
+				</if>
+				<!--BÜCHER UND KOMMENTARE (SELBSTÄNDIGE WERKE Rz 77 ff)-->
+				<else-if type="entry-encyclopedia">
+					<text macro="legal_commentary"/>
+				</else-if>
+				<else-if type="book">
+					<text macro="book"/>
+				</else-if>
+				<!-- FESTSCHRIFTEN und GEDÄCHTNISSCHRIFTEN; wenn Hrsg fehlt, dann TAGUNGSBÄNDE -->
+				<else-if type="chapter">
+					<text macro="chapter"/>
+				</else-if>
+				<!--ÖSTERREICHISCHE GESETZE-->
+				<!--EU VERORDNUNGEN/RICHTLINIEN-->
+				<else-if type="statute">
+					<text macro="law"/>
+				</else-if>
+				<!--ENTSCHEIDUNGEN-->
+				<else-if type="legal_case">
+					<text macro="cases"/>
+				</else-if>
+				<else-if type="webpage post-weblog" match="any">
+					<text macro="web"/>
+				</else-if>
+				<else>
+					<text macro="document"/>
+				</else>
+			</choose>
+		</layout>
+	</citation>
+	<!-- LITERATURVERZEICHNIS -->
+	<!-- sort macros -->
+	<macro name="type-sort">
+		<choose>
+			<if type="legal_case regulation" match="any">
+				<text value="1"/>
+			</if>
+			<else-if type="statute">
+				<text value="10"/>
+			</else-if>
+			<else-if type="article-journal" match="any">
+				<text value="3"/>
+			</else-if>
+			<else-if type="entry-encyclopedia">
+				<text value="4"/>
+			</else-if>
+			<else-if type="chapter">
+				<text value="5"/>
+			</else-if>
+			<else-if type="book">
+				<text value="6"/>
+			</else-if>
+			<else-if type="webpage post-weblog post" match="any">
+				<text value="15"/>
+			</else-if>
+			<else>
+				<text value="20"/>
+			</else>
+		</choose>
+	</macro>
+	<bibliography>
+		<sort>
+			<key macro="type-sort"/>
+			<key variable="author"/>
+		</sort>
+		<layout>
+			<choose>
+				<!--ZEITSCHRIFTEN-->
+				<if type="article-journal">
+					<text macro="article-journal"/>
+				</if>
+				<!--BÜCHER UND KOMMENTARE (SELBSTÄNDIGE WERKE Rz 77 ff)-->
+				<else-if type="entry-encyclopedia">
+					<text value="KOMMENTAR" suffix=" "/>
+					<text macro="legal_commentary"/>
+				</else-if>
+				<else-if type="book">
+					<text macro="book"/>
+				</else-if>
+				<!-- FESTSCHRIFTEN und GEDÄCHTNISSCHRIFTEN; wenn Hrsg fehlt, dann TAGUNGSBÄNDE -->
+				<else-if type="chapter">
+					<text macro="chapter"/>
+				</else-if>
+				<!--ÖSTERREICHISCHE GESETZE-->
+				<!--EU VERORDNUNGEN/RICHTLINIEN-->
+				<else-if type="statute">
+					<text macro="law"/>
+				</else-if>
+				<!--ENTSCHEIDUNGEN-->
+				<else-if type="legal_case">
+					<text macro="cases"/>
+				</else-if>
+				<else-if type="webpage post-weblog" match="any">
+					<text macro="web"/>
+				</else-if>
+				<else>
+					<text macro="document"/>
+				</else>
+			</choose>
+		</layout>
+	</bibliography>
+</style>
