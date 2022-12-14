@@ -89,8 +89,8 @@
 		<text variable="edition" vertical-align="sup"/>
 	</macro>
 	<macro name="issued">
-		<date variable="issued" form="numeric" prefix=" (" suffix=")" date-parts="year">
-			<date-part name="year" form="long"/>
+		<date variable="issued" form="numeric" date-parts="year">
+			<date-part name="year" form="long" prefix=" (" suffix=")"/>
 		</date>
 	</macro>
 	<!--Zitierte Werke-->
@@ -134,9 +134,23 @@
 				<text macro="editors" prefix=" in "/>
 				<text macro="title" prefix=", "/>
 				<text macro="edition"/>
-				<text macro="issued"/>
+				<choose>
+					<if variable="URL" match="none">
+						<text macro="issued"/>
+					</if>
+				</choose>
 				<text variable="page-first" prefix=" "/>
 				<text variable="locator" prefix=" "/>
+				<choose>
+					<if variable="URL">
+						<date variable="issued" prefix=" (Stand: ">
+							<date-part name="day" form="numeric" suffix=". "/>
+							<date-part name="month" form="numeric" suffix=". "/>
+							<date-part name="year"/>
+						</date>
+						<text variable="URL" prefix=", " suffix=")"/>
+					</if>
+				</choose>
 			</if>
 			<else-if context="bibliography">
 				<!--Literaturverzeichnis-->
@@ -237,22 +251,20 @@
 			</else>
 		</choose>
 		<choose>
-			<if variable="edition">
-				<text macro="edition"/>
-			</if>
-		</choose>
-		<choose>
 			<if variable="issued">
+				<text macro="edition"/>
 				<choose>
-					<if>
-						<conditions match="any">
-							<condition position="first"/>
-							<condition context="bibliography"/>
-						</conditions>
+					<if position="first" context="bibliography" match="any">
 						<text macro="issued"/>
 					</if>
 				</choose>
 			</if>
+			<else-if variable="edition">
+				<text macro="edition"/>
+			</else-if>
+			<else-if variable="page-first">
+				<text value=","/>
+			</else-if>
 		</choose>
 		<choose>
 			<if variable="page-first">
@@ -372,6 +384,7 @@
 							<date-part name="year"/>
 						</date>
 						<text variable="number"/>
+						<text variable="title" prefix=", " font-style="italic"/>
 						<text variable="locator" prefix=", "/>
 					</else>
 				</choose>
@@ -471,7 +484,9 @@
 	<bibliography>
 		<sort>
 			<key macro="type-sort"/>
+			<key variable="editor"/>
 			<key variable="author"/>
+			<key variable="issued" sort="descending"/>
 		</sort>
 		<layout>
 			<choose>
