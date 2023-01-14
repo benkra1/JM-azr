@@ -349,12 +349,12 @@
 		<choose>
 			<if country="coe.int">
 				<!--EGMR Entscheidungen-->
-				<date variable="issued" suffix=" ">
+				<date variable="issued">
 					<date-part name="day" form="numeric" suffix=". "/>
 					<date-part name="month" form="numeric" suffix=". "/>
 					<date-part name="year"/>
 				</date>
-				<text variable="division" prefix="(" suffix=")"/>
+				<text variable="division" prefix=" (" suffix=")"/>
 				<text variable="number" prefix=", "/>
 				<text variable="title" prefix=", " font-style="italic"/>
 				<text variable="issue" prefix=", "/>
