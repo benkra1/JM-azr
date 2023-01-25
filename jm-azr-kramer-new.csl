@@ -242,7 +242,7 @@
 			<else>
 				<choose>
 					<if variable="container-title-short">
-						<text variable="container-title-short" prefix="in "/>
+						<text variable="container-title-short" prefix=" in "/>
 					</if>
 					<else>
 						<text variable="container-title" prefix=" in "/>
@@ -265,20 +265,12 @@
 			<else-if variable="page-first">
 				<text value=","/>
 			</else-if>
+			<else-if variable="locator">
+				<text value=","/>
+			</else-if>
 		</choose>
-		<choose>
-			<if variable="page-first">
-				<choose>
-					<if variable="locator">
-						<text variable="page-first" prefix=" "/>
-						<text variable="locator" prefix=" (" suffix=")"/>
-					</if>
-					<else>
-						<text variable="page-first" prefix=" "/>
-					</else>
-				</choose>
-			</if>
-		</choose>
+		<text variable="page-first" prefix=" "/>
+		<text variable="locator" prefix=" "/>
 	</macro>
 	<!--ÖSTERREICHISCHE GESETZE-->
 	<!--EU VERORDNUNGEN/RICHTLINIEN-->
